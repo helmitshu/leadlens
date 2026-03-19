@@ -230,6 +230,119 @@ body{display:flex;overflow:hidden}
 .notes-save:hover{opacity:0.88}
 .notes-saved{font-size:10px;color:var(--green);margin-left:10px;display:none;animation:fadeIn 0.3s ease}
 
+/* ── OBJECTION CARDS ── */
+.obj-cards{display:flex;flex-direction:column;gap:10px}
+.obj-card{background:var(--card);border:1px solid var(--border);border-radius:11px;overflow:hidden;transition:border-color 0.2s;animation:fadeIn 0.4s ease}
+.obj-card:hover{border-color:var(--border2)}
+.obj-objection{padding:11px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:10px}
+.obj-label{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);flex-shrink:0;margin-top:2px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);padding:2px 8px;border-radius:4px}
+.obj-response{padding:11px 14px;display:flex;align-items:flex-start;gap:10px;background:rgba(16,185,129,0.03)}
+.obj-rlabel{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);flex-shrink:0;margin-top:2px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);padding:2px 8px;border-radius:4px}
+.obj-text{font-size:12px;color:var(--text2);line-height:1.65}
+
+/* ── NOTES JOURNAL ── */
+.notes-journal{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.note-entry{background:var(--input);border:1px solid var(--border);border-radius:9px;padding:12px 14px;animation:fadeIn 0.3s ease;position:relative}
+.note-entry::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--purple),var(--cyan));border-radius:3px 0 0 3px}
+.note-entry-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.note-entry-time{font-size:9px;color:var(--text2);opacity:0.5;font-weight:500}
+.note-entry-text{font-size:12px;color:var(--text2);line-height:1.65;white-space:pre-wrap}
+.notes-journal-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text2);opacity:0.5;margin-top:16px;margin-bottom:4px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+
+/* ── CALENDAR ── */
+.cal-wrap{display:grid;grid-template-columns:1fr 320px;gap:14px}
+.cal-main{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:16px}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-nav{display:flex;align-items:center;gap:10px}
+.cal-nav-btn{background:var(--input);border:1px solid var(--border2);border-radius:6px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text2);font-size:14px;transition:all 0.2s}
+.cal-nav-btn:hover{border-color:var(--purple);color:var(--purple2)}
+.cal-month{font-family:'Inter',sans-serif;font-size:13px;font-weight:700;color:var(--text);min-width:130px;text-align:center}
+.cal-grid-head{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4px}
+.cal-day-name{text-align:center;font-size:9px;font-weight:700;color:var(--text2);opacity:0.5;text-transform:uppercase;letter-spacing:0.06em;padding:4px 0}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-cell{min-height:52px;border-radius:7px;padding:5px;cursor:pointer;border:1px solid transparent;transition:all 0.2s;position:relative}
+.cal-cell:hover{background:var(--input);border-color:var(--border)}
+.cal-cell.today{background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.25)}
+.cal-cell.other-month{opacity:0.25}
+.cal-cell.has-reminder{border-color:rgba(6,182,212,0.3);background:rgba(6,182,212,0.05)}
+.cal-cell.has-reminder:hover{border-color:var(--cyan)}
+.cal-date{font-size:10px;font-weight:700;color:var(--text2);line-height:1}
+.cal-cell.today .cal-date{color:var(--purple2);font-weight:800}
+.cal-dot-wrap{display:flex;flex-wrap:wrap;gap:2px;margin-top:3px}
+.cal-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan)}
+.cal-dot.ai{background:var(--purple)}
+
+.cal-side{display:flex;flex-direction:column;gap:10px}
+.cal-add-box{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:14px}
+.cal-add-title{font-size:11px;font-weight:700;color:var(--text);margin-bottom:10px}
+.cal-input{width:100%;background:var(--input);border:1px solid var(--inputb);border-radius:7px;padding:8px 11px;font-size:11px;color:var(--text);outline:none;transition:all 0.2s;font-family:'Inter',sans-serif;margin-bottom:8px}
+.cal-input:focus{border-color:var(--purple);box-shadow:0 0 0 3px #7C3AED10}
+.cal-input::placeholder{color:var(--text2);opacity:0.4}
+.cal-add-btn{width:100%;background:linear-gradient(135deg,var(--purple),var(--cyan));border:none;color:#fff;padding:8px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
+.cal-add-btn:hover{opacity:0.9}
+.cal-add-btn:disabled{opacity:0.45;cursor:not-allowed}
+
+.cal-ai-box{background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(6,182,212,0.04));border:1px solid rgba(124,58,237,0.2);border-radius:11px;padding:14px}
+.cal-ai-title{font-size:11px;font-weight:700;color:#A78BFA;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.cal-ai-sub{font-size:10px;color:var(--text2);opacity:0.6;margin-bottom:10px;line-height:1.5}
+.cal-ai-btn{width:100%;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);color:#A78BFA;padding:8px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s}
+.cal-ai-btn:hover{background:rgba(124,58,237,0.25)}
+.cal-ai-btn:disabled{opacity:0.45;cursor:not-allowed}
+.cal-ai-result{margin-top:10px;background:var(--input);border:1px solid var(--border2);border-radius:7px;padding:10px;font-size:11px;color:var(--text2);line-height:1.6;display:none;animation:fadeIn 0.3s ease}
+
+.cal-reminders-box{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:14px;flex:1}
+.cal-reminders-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text2);opacity:0.5;margin-bottom:10px}
+.cal-reminder-item{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--input);border:1px solid var(--border);border-radius:7px;margin-bottom:6px;transition:border-color 0.2s;animation:fadeIn 0.3s ease}
+.cal-reminder-item:hover{border-color:var(--border2)}
+.cal-reminder-item.ai-suggest{border-color:rgba(124,58,237,0.2);background:rgba(124,58,237,0.04)}
+.cal-reminder-date{font-size:9px;font-weight:800;color:var(--cyan);white-space:nowrap;margin-top:1px;min-width:60px}
+.cal-reminder-date.ai{color:var(--purple2)}
+.cal-reminder-text{font-size:11px;color:var(--text2);line-height:1.4;flex:1}
+.cal-reminder-company{font-size:9px;color:var(--text3);margin-top:2px}
+.cal-reminder-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:13px;padding:0 2px;transition:color 0.2s;flex-shrink:0}
+.cal-reminder-del:hover{color:var(--red)}
+.cal-empty-reminders{font-size:11px;color:var(--text2);opacity:0.35;text-align:center;padding:16px 0}
+
+/* ── SIDEBAR UPCOMING REMINDERS ── */
+.sb-upcoming{padding:10px;border-top:1px solid var(--border);position:relative;z-index:1}
+.sb-upcoming-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.sb-upcoming-lbl{font-size:8px;color:var(--text2);text-transform:uppercase;letter-spacing:0.12em;font-weight:700;opacity:0.6}
+.sb-upcoming-count{font-size:9px;font-weight:700;color:var(--purple2);background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.2);padding:1px 8px;border-radius:99px}
+.sb-reminder-item{display:flex;align-items:flex-start;gap:8px;padding:7px 9px;border-radius:8px;border:1px solid var(--border);background:var(--input);margin-bottom:5px;cursor:pointer;transition:all 0.2s}
+.sb-reminder-item:hover{border-color:rgba(124,58,237,0.3);background:rgba(124,58,237,0.05)}
+.sb-reminder-item.ai{border-color:rgba(124,58,237,0.18);background:rgba(124,58,237,0.04)}
+.sb-reminder-item.overdue{border-color:rgba(239,68,68,0.2);background:rgba(239,68,68,0.04)}
+.sb-rem-date{font-size:9px;font-weight:800;color:var(--cyan);white-space:nowrap;min-width:36px;margin-top:1px}
+.sb-rem-date.ai{color:var(--purple2)}
+.sb-rem-date.overdue{color:var(--red)}
+.sb-rem-body{flex:1;min-width:0}
+.sb-rem-company{font-size:10px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-rem-note{font-size:9px;color:var(--text2);opacity:0.6;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-rem-empty{font-size:10px;color:var(--text2);opacity:0.35;text-align:center;padding:10px 0}
+.usage-bar-wrap{padding:10px 10px 6px;border-bottom:1px solid var(--border);position:relative;z-index:1}
+.usage-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.usage-lbl{font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.08em;opacity:0.7}
+.usage-num{font-size:9px;font-weight:800;color:var(--purple2)}
+.usage-track{height:4px;background:rgba(255,255,255,0.05);border-radius:99px;overflow:hidden}
+.usage-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--purple),var(--cyan));transition:width 0.6s ease}
+.usage-fill.warn{background:linear-gradient(90deg,var(--amber),#F97316)}
+.usage-fill.full{background:linear-gradient(90deg,var(--red),#EC4899)}
+
+.limit-banner{display:none;margin:12px;background:linear-gradient(135deg,rgba(239,68,68,0.1),rgba(236,72,153,0.06));border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:16px;animation:fadeIn 0.4s ease;position:relative;z-index:1}
+.limit-banner-title{font-size:12px;font-weight:800;color:var(--red);margin-bottom:4px}
+.limit-banner-sub{font-size:10px;color:var(--text2);line-height:1.6;margin-bottom:12px;opacity:0.8}
+.limit-req-btn{width:100%;background:linear-gradient(135deg,var(--purple),var(--cyan));border:none;color:#fff;padding:9px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;position:relative;overflow:hidden;transition:opacity 0.2s}
+.limit-req-btn::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transition:left 0.5s}
+.limit-req-btn:hover::after{left:100%}
+.limit-req-btn:hover{opacity:0.9}
+.limit-req-btn:disabled{opacity:0.5;cursor:not-allowed}
+.limit-req-sent{display:none;margin-top:8px;font-size:10px;color:var(--green);text-align:center}
+
+.user-info-bar{padding:8px 12px;border-bottom:1px solid var(--border);position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between}
+.user-email{font-size:9px;color:var(--text2);opacity:0.6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:160px}
+.logout-btn{font-size:9px;color:var(--text3);cursor:pointer;background:none;border:none;padding:2px 6px;border-radius:4px;transition:color 0.2s}
+.logout-btn:hover{color:var(--red)}
+
 .pipe-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .pipe-col{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:12px}
 .pipe-col-title{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;display:flex;align-items:center;gap:5px}
@@ -256,12 +369,29 @@ body{display:flex;overflow:hidden}
       </div>
       <div>
         <div class="logo-word">LeadLens</div>
-        <div class="logo-tag">Pro · 2026</div>
+        <div class="logo-tag">Early Access</div>
       </div>
     </div>
     <div class="sb-search">
       <div class="sb-search-ring"></div>
       <span class="sb-search-text">Search leads...</span>
+    </div>
+  </div>
+
+  <!-- USER INFO -->
+  <div class="user-info-bar">
+    <span class="user-email" id="user-email-display">—</span>
+    <button class="logout-btn" onclick="window.location.href='/logout'">Log out</button>
+  </div>
+
+  <!-- USAGE METER -->
+  <div class="usage-bar-wrap">
+    <div class="usage-row">
+      <span class="usage-lbl">Reports used</span>
+      <span class="usage-num" id="usage-num">— / —</span>
+    </div>
+    <div class="usage-track">
+      <div class="usage-fill" id="usage-fill" style="width:0%"></div>
     </div>
   </div>
 
@@ -284,6 +414,17 @@ body{display:flex;overflow:hidden}
     <div class="sb-empty">No leads yet — research a company above to get started</div>
   </div>
 
+  <!-- UPCOMING REMINDERS -->
+  <div class="sb-upcoming">
+    <div class="sb-upcoming-hdr">
+      <span class="sb-upcoming-lbl">📅 Upcoming</span>
+      <span class="sb-upcoming-count" id="sb-rem-count">0</span>
+    </div>
+    <div id="sb-reminders-list">
+      <div class="sb-rem-empty">No reminders yet</div>
+    </div>
+  </div>
+
   <div id="sb-footer">
     <div class="dark-toggle" onclick="toggleTheme()">
       <span class="toggle-lbl">
@@ -301,10 +442,18 @@ body{display:flex;overflow:hidden}
     <div class="sb-plan">
       <div class="sb-plan-dot"></div>
       <div>
-        <div class="sb-plan-name">LeadLens Pro</div>
-        <div class="sb-plan-sub">Unlimited · Real-time intel</div>
+        <div class="sb-plan-name" id="plan-label">LeadLens Starter</div>
+        <div class="sb-plan-sub" id="plan-sub">Demo Access · Early 2026</div>
       </div>
     </div>
+  </div>
+
+  <!-- LIMIT REACHED BANNER -->
+  <div class="limit-banner" id="limit-banner">
+    <div class="limit-banner-title">🔒 You've used all your reports</div>
+    <div class="limit-banner-sub">You've reached your demo limit. Request more access and we'll review within 24 hours.</div>
+    <button class="limit-req-btn" id="limit-req-btn" onclick="requestMoreAccess()">Request More Access →</button>
+    <div class="limit-req-sent" id="limit-req-sent">✓ Request sent! We'll be in touch soon.</div>
   </div>
 </div>
 
@@ -391,13 +540,19 @@ function loadTheme(){
 function savePrefs(){
   const n=document.getElementById('inp-name').value.trim();
   const r=document.getElementById('inp-role').value.trim();
-  if(n)localStorage.setItem('ll-name',n);
-  if(r)localStorage.setItem('ll-role',r);
+  const email=document.getElementById('user-email-display')?.textContent||'default';
+  if(n)localStorage.setItem(`ll-name-${email}`,n);
+  if(r)localStorage.setItem(`ll-role-${email}`,r);
 }
 
 function loadPrefs(){
-  const n=localStorage.getItem('ll-name')||'';
-  const r=localStorage.getItem('ll-role')||'';
+  // Don't load prefs yet — wait until we know the user's email from /usage
+  // loadPrefsForEmail() is called after loadUsage() resolves
+}
+
+function loadPrefsForEmail(email){
+  const n=localStorage.getItem(`ll-name-${email}`)||'';
+  const r=localStorage.getItem(`ll-role-${email}`)||'';
   if(n)document.getElementById('inp-name').value=n;
   if(r)document.getElementById('inp-role').value=r;
 }
@@ -483,12 +638,23 @@ function runAgent(){
     clearInterval(iv);
     document.getElementById('loading').style.display='none';
     setResearching(false);
+    if(data.limit_reached){
+      showLimitReached();
+      return;
+    }
     if(data.error){showEmpty('Company not found',data.message,true);return;}
     currentData=data;
     leads.unshift(data);
     updateSidebar();
     showReport(data);
     document.getElementById('inp-company').value='';
+    // update usage counter after successful report
+    if(typeof data.reports_remaining !== 'undefined'){
+      const used = (currentUsage.limit - data.reports_remaining);
+      updateUsageUI(used, currentUsage.limit);
+    } else {
+      loadUsage();
+    }
   })
   .catch(()=>{
     clearInterval(iv);
@@ -603,6 +769,30 @@ function parseNumList(text,numBg){
   return lines.map(l=>`<div class="sc-item"><div class="sc-num" style="${numBg?`background:${numBg}`:''}">${l.trim()[0]}</div><div class="sc-item-text">${l.replace(/^\d[\.\)]\s*/,'').trim()}</div></div>`).join('');
 }
 
+function parseObjections(text){
+  if(!text)return '<div class="sc-text">No objections available</div>';
+  // Split on "Objection:" pattern
+  const blocks=text.split(/(?=Objection:)/i).filter(b=>b.trim());
+  if(blocks.length===0)return `<div class="sc-text">${text}</div>`;
+  return '<div class="obj-cards">'+blocks.map(block=>{
+    const objMatch=block.match(/Objection:\s*(.+?)(?=Response:|$)/is);
+    const resMatch=block.match(/Response:\s*(.+?)$/is);
+    const obj=objMatch?objMatch[1].trim():'';
+    const res=resMatch?resMatch[1].trim():'';
+    if(!obj&&!res)return '';
+    return `<div class="obj-card">
+      <div class="obj-objection">
+        <span class="obj-label">Objection</span>
+        <span class="obj-text">${obj}</span>
+      </div>
+      ${res?`<div class="obj-response">
+        <span class="obj-rlabel">Response</span>
+        <span class="obj-text" style="color:var(--text)">${res}</span>
+      </div>`:''}
+    </div>`;
+  }).join('')+'</div>';
+}
+
 function showReport(data){
   const s=data.scores||{};
   const overall=s.overall||0,need=s.need_score||0,budget=s.budget_score||0,speed=s.decision_speed||0,readiness=s.deal_readiness||0;
@@ -671,6 +861,7 @@ function showReport(data){
       <button class="tab" onclick="showTab('debrief',this)">Debrief</button>
       <button class="tab" onclick="showTab('pipeline',this)">Pipeline</button>
       <button class="tab" onclick="showTab('notes',this)">Notes</button>
+      <button class="tab" onclick="showTab('calendar',this)">📅 Calendar</button>
     </div>
 
     <div id="tab-brief">
@@ -678,7 +869,7 @@ function showReport(data){
         <div class="sc full"><span class="sc-tag" style="background:#7C3AED15;border-color:#7C3AED30;color:#A78BFA">Company profile</span><div class="sc-text">${data.profile||'No profile available'}</div></div>
         <div class="sc"><span class="sc-tag" style="background:#10B98115;border-color:#10B98130;color:var(--green)">Opening line</span><div class="sc-text">${data.opener||''}</div></div>
         <div class="sc"><span class="sc-tag" style="background:#06B6D415;border-color:#06B6D430;color:var(--cyan)">Discovery questions</span><div class="sc-list">${parseNumList(data.questions||'')}</div></div>
-        <div class="sc"><span class="sc-tag" style="background:#F59E0B15;border-color:#F59E0B30;color:var(--amber)">Objections & responses</span><div class="sc-text">${data.objections||''}</div></div>
+        <div class="sc"><span class="sc-tag" style="background:#F59E0B15;border-color:#F59E0B30;color:var(--amber)">Objections & responses</span>${parseObjections(data.objections||'')}</div>
         <div class="sc full"><span class="sc-tag" style="background:#EF444415;border-color:#EF444430;color:var(--red)">Next steps</span><div class="sc-list" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">${parseNumList(data.next_steps||'','var(--red)')}</div></div>
       </div>
     </div>
@@ -738,10 +929,54 @@ function showReport(data){
     <div id="tab-notes" style="display:none">
       <div class="notes-box">
         <div class="live-title" style="margin-bottom:4px">Your notes</div>
-        <div class="live-sub">Private notes about this lead — saved to your database</div>
-        <textarea class="live-ta" id="notes-input" style="min-height:120px" placeholder="Add your own notes — what was discussed, who to contact, key insights...">${data.notes||''}</textarea>
-        <button class="notes-save" onclick="saveNotes()">Save notes</button>
-        <span class="notes-saved" id="notes-saved">Saved</span>
+        <div class="live-sub">Private notes about this lead — every entry is saved with a timestamp</div>
+        <textarea class="live-ta" id="notes-input" style="min-height:100px" placeholder="Add a note — what was discussed, who to contact, key insights..."></textarea>
+        <button class="notes-save" onclick="saveNoteEntry()">Save note</button>
+        <span class="notes-saved" id="notes-saved">✓ Saved</span>
+      </div>
+      <div id="notes-journal-wrap">
+        <div class="notes-journal-title">Note history</div>
+        <div class="notes-journal" id="notes-journal"></div>
+      </div>
+    </div>
+
+    <div id="tab-calendar" style="display:none">
+      <div class="cal-wrap">
+        <div class="cal-main">
+          <div class="cal-header">
+            <div class="cal-nav">
+              <button class="cal-nav-btn" onclick="calNav(-1)">‹</button>
+              <div class="cal-month" id="cal-month-label"></div>
+              <button class="cal-nav-btn" onclick="calNav(1)">›</button>
+            </div>
+            <div style="font-size:9px;color:var(--text2);opacity:0.5;display:flex;align-items:center;gap:10px">
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:7px;height:7px;border-radius:50%;background:var(--cyan);display:inline-block"></span>Manual</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:7px;height:7px;border-radius:50%;background:var(--purple);display:inline-block"></span>AI suggested</span>
+            </div>
+          </div>
+          <div class="cal-grid-head">
+            ${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<div class="cal-day-name">${d}</div>`).join('')}
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+        </div>
+        <div class="cal-side">
+          <div class="cal-add-box">
+            <div class="cal-add-title">Add follow-up reminder</div>
+            <input class="cal-input" type="text" id="cal-note-input" placeholder="What to follow up on..."/>
+            <input class="cal-input" type="date" id="cal-date-input"/>
+            <button class="cal-add-btn" onclick="addReminder()">Add reminder →</button>
+          </div>
+          <div class="cal-ai-box">
+            <div class="cal-ai-title">🤖 AI Follow-up Suggestion</div>
+            <div class="cal-ai-sub">Groq reads your notes for this lead and suggests the best follow-up date and reason.</div>
+            <button class="cal-ai-btn" id="cal-ai-btn" onclick="getAISuggestion()">Suggest follow-up →</button>
+            <div class="cal-ai-result" id="cal-ai-result"></div>
+          </div>
+          <div class="cal-reminders-box">
+            <div class="cal-reminders-title">All reminders</div>
+            <div id="cal-reminders-list"></div>
+          </div>
+        </div>
       </div>
     </div>`;
 
@@ -749,13 +984,15 @@ function showReport(data){
 }
 
 function showTab(tab,btn){
-  ['brief','signals','outreach','live','debrief','pipeline','notes'].forEach(t=>{
+  ['brief','signals','outreach','live','debrief','pipeline','notes','calendar'].forEach(t=>{
     const el=document.getElementById('tab-'+t);
     if(el)el.style.display=t===tab?'block':'none';
   });
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
   if(btn)btn.classList.add('on');
   if(tab==='pipeline')buildPipeline();
+  if(tab==='notes'&&currentData?.id)loadNoteJournal(currentData.id);
+  if(tab==='calendar'){buildCalendar();loadReminders();}
 }
 
 function buildCharts(readiness,need,budget,speed){
@@ -900,6 +1137,50 @@ async function saveNotes(){
   }catch(e){alert('Could not save notes.');}
 }
 
+async function saveNoteEntry(){
+  if(!currentData?.id)return;
+  const input=document.getElementById('notes-input');
+  const text=(input?.value||'').trim();
+  if(!text)return;
+  const btn=document.querySelector('.notes-save');
+  btn.disabled=true;btn.textContent='Saving…';
+  try{
+    const r=await fetch(`/leads/${currentData.id}/notes/add`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({note:text})
+    });
+    if(r.ok){
+      input.value='';
+      const saved=document.getElementById('notes-saved');
+      if(saved){saved.style.display='inline';setTimeout(()=>saved.style.display='none',2000);}
+      loadNoteJournal(currentData.id);
+    }
+  }catch(e){alert('Could not save note.');}
+  btn.disabled=false;btn.textContent='Save note';
+}
+
+async function loadNoteJournal(leadId){
+  try{
+    const r=await fetch(`/leads/${leadId}/notes`);
+    if(!r.ok)return;
+    const entries=await r.json();
+    const journal=document.getElementById('notes-journal');
+    if(!journal)return;
+    if(!entries.length){
+      journal.innerHTML='<div style="font-size:11px;color:var(--text2);opacity:0.4;padding:12px 0;text-align:center">No notes yet — add your first note above</div>';
+      return;
+    }
+    journal.innerHTML=entries.map(e=>`
+      <div class="note-entry">
+        <div class="note-entry-header">
+          <span class="note-entry-time">📝 ${e.created_at}</span>
+        </div>
+        <div class="note-entry-text">${e.note}</div>
+      </div>`).join('');
+  }catch(err){}
+}
+
 function copyById(id,btn){
   const el=document.getElementById(id);
   if(!el)return;
@@ -993,9 +1274,333 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Enter'&&e.target.tagName!=='TEXTAREA'&&!isResearching)runAgent();
 });
 
+// ── USAGE & LIMIT ──
+let currentUsage = {count: 0, limit: 10};
+
+async function loadUsage(){
+  try{
+    const r = await fetch('/usage');
+    if(!r.ok) return;
+    const data = await r.json();
+    currentUsage = {count: data.report_count, limit: data.report_limit};
+    updateUsageUI(data.report_count, data.report_limit);
+    if(data.email){
+      document.getElementById('user-email-display').textContent = data.email;
+      // Load prefs scoped to this specific user
+      loadPrefsForEmail(data.email);
+    }
+    if(data.report_count >= data.report_limit) showLimitReached();
+  }catch(e){}
+}
+
+function updateUsageUI(used, limit){
+  const pct = limit > 0 ? Math.min((used/limit)*100, 100) : 0;
+  const numEl = document.getElementById('usage-num');
+  const fillEl = document.getElementById('usage-fill');
+  const planSub = document.getElementById('plan-sub');
+  if(numEl) numEl.textContent = `${used} / ${limit}`;
+  if(fillEl){
+    fillEl.style.width = pct + '%';
+    fillEl.className = 'usage-fill' + (pct >= 100 ? ' full' : pct >= 70 ? ' warn' : '');
+  }
+  if(planSub){
+    const remaining = limit - used;
+    planSub.textContent = remaining > 0
+      ? `${remaining} report${remaining===1?'':'s'} remaining`
+      : 'No reports remaining';
+  }
+  // lock run button if at limit
+  const btn = document.getElementById('run-btn');
+  if(btn) btn.disabled = used >= limit;
+}
+
+function showLimitReached(){
+  document.getElementById('limit-banner').style.display = 'block';
+  const btn = document.getElementById('run-btn');
+  if(btn){ btn.disabled = true; btn.textContent = 'Limit reached'; }
+  showEmpty(
+    'Report limit reached',
+    'You\'ve used all your demo reports. Click "Request More Access" in the sidebar to get more.',
+    true
+  );
+}
+
+async function requestMoreAccess(){
+  const btn = document.getElementById('limit-req-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  try{
+    const r = await fetch('/request-access', {method:'POST', headers:{'Content-Type':'application/json'}});
+    const data = await r.json();
+    if(data.success){
+      document.getElementById('limit-req-sent').style.display = 'block';
+      btn.style.display = 'none';
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Request More Access →';
+    }
+  }catch{
+    btn.disabled = false;
+    btn.textContent = 'Request More Access →';
+  }
+}
+
+// also expose user email on /usage endpoint — update app.py to return it
+// for now load it from the leads list
+function setEmailFromLeads(){
+  // email shown from first lead's stored user info isn't available
+  // so we rely on the /usage endpoint returning it
+}
+
 loadTheme();
-loadPrefs();
 loadLeadsFromDB();
+loadUsage();
+// Load sidebar reminders on startup (independent of calendar tab)
+fetch('/reminders').then(r=>r.json()).then(data=>{
+  allReminders=data;
+  renderSidebarReminders();
+}).catch(()=>{});
+
+// ── CALENDAR ──
+let calYear = new Date().getFullYear();
+let calMonth = new Date().getMonth();
+let allReminders = [];
+
+function buildCalendar(){
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('cal-month-label').textContent = `${months[calMonth]} ${calYear}`;
+
+  const grid = document.getElementById('cal-grid');
+  if(!grid) return;
+
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+  const daysInPrev = new Date(calYear, calMonth, 0).getDate();
+  const today = new Date();
+
+  let cells = '';
+
+  // Previous month padding
+  for(let i = firstDay-1; i >= 0; i--){
+    cells += `<div class="cal-cell other-month"><div class="cal-date">${daysInPrev-i}</div></div>`;
+  }
+
+  // Current month days
+  for(let d = 1; d <= daysInMonth; d++){
+    const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = today.getFullYear()===calYear && today.getMonth()===calMonth && today.getDate()===d;
+    const dayReminders = allReminders.filter(r=>r.date===dateStr);
+    const hasDots = dayReminders.length > 0;
+    const dots = dayReminders.map(r=>`<div class="cal-dot${r.ai_suggested?` ai`:''}"></div>`).join('');
+
+    cells += `<div class="cal-cell${isToday?' today':''}${hasDots?' has-reminder':''}" onclick="selectCalDay('${dateStr}')">
+      <div class="cal-date">${d}</div>
+      ${hasDots?`<div class="cal-dot-wrap">${dots}</div>`:''}
+    </div>`;
+  }
+
+  // Next month padding
+  const totalCells = firstDay + daysInMonth;
+  const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+  for(let i = 1; i <= remaining; i++){
+    cells += `<div class="cal-cell other-month"><div class="cal-date">${i}</div></div>`;
+  }
+
+  grid.innerHTML = cells;
+
+  // Set today as default date input
+  const dateInput = document.getElementById('cal-date-input');
+  if(dateInput && !dateInput.value){
+    dateInput.value = today.toISOString().split('T')[0];
+  }
+}
+
+function calNav(dir){
+  calMonth += dir;
+  if(calMonth > 11){ calMonth=0; calYear++; }
+  if(calMonth < 0){ calMonth=11; calYear--; }
+  buildCalendar();
+}
+
+function selectCalDay(dateStr){
+  const dateInput = document.getElementById('cal-date-input');
+  if(dateInput) dateInput.value = dateStr;
+}
+
+async function loadReminders(){
+  try{
+    const r = await fetch('/reminders');
+    if(!r.ok) return;
+    allReminders = await r.json();
+    buildCalendar();
+    renderRemindersList();
+    renderSidebarReminders();
+  }catch(e){}
+}
+
+function renderSidebarReminders(){
+  const list  = document.getElementById('sb-reminders-list');
+  const count = document.getElementById('sb-rem-count');
+  if(!list) return;
+
+  const today = new Date().toISOString().split('T')[0];
+
+  // Sort by date, show next 7
+  const sorted = [...allReminders]
+    .sort((a,b)=>a.date.localeCompare(b.date))
+    .slice(0,7);
+
+  const upcoming = allReminders.filter(r=>r.date >= today).length;
+  if(count) count.textContent = upcoming;
+
+  if(!sorted.length){
+    list.innerHTML='<div class="sb-rem-empty">No reminders yet</div>';
+    return;
+  }
+
+  list.innerHTML = sorted.map(r=>{
+    const isOverdue = r.date < today;
+    const isAI      = r.ai_suggested;
+    const cls       = isOverdue ? 'overdue' : isAI ? 'ai' : '';
+    const dateCls   = isOverdue ? 'overdue' : isAI ? 'ai' : '';
+    return `<div class="sb-reminder-item ${cls}" onclick="jumpToLead(${r.lead_id})">
+      <div class="sb-rem-date ${dateCls}">${formatReminderDate(r.date)}</div>
+      <div class="sb-rem-body">
+        <div class="sb-rem-company">${r.company||'General'}</div>
+        <div class="sb-rem-note">${r.note}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function jumpToLead(leadId){
+  if(!leadId) return;
+  const lead = leads.find(l=>l.id===leadId);
+  if(!lead) return;
+  // Highlight in sidebar
+  document.querySelectorAll('.lead-item').forEach(el=>el.classList.remove('active'));
+  const items = document.querySelectorAll('.lead-item');
+  items.forEach(el=>{
+    if(el.querySelector('.lead-name')?.textContent===lead.company)
+      el.classList.add('active');
+  });
+  currentData = lead;
+  currentUser = {name:lead.user_name||'',role:lead.user_role||'',product:lead.product||''};
+  showReport(lead);
+  // Switch to calendar tab so they see the reminder in context
+  const calBtn = document.querySelector('.tab:last-child');
+  showTab('calendar', calBtn);
+}
+
+function renderRemindersList(){
+  const list = document.getElementById('cal-reminders-list');
+  if(!list) return;
+  if(!allReminders.length){
+    list.innerHTML='<div class="cal-empty-reminders">No reminders yet</div>';
+    return;
+  }
+  // Sort by date
+  const sorted = [...allReminders].sort((a,b)=>a.date.localeCompare(b.date));
+  list.innerHTML = sorted.map(r=>`
+    <div class="cal-reminder-item${r.ai_suggested?' ai-suggest':''}">
+      <div>
+        <div class="cal-reminder-date${r.ai_suggested?' ai':''}">${formatReminderDate(r.date)}</div>
+        <div class="cal-reminder-company">${r.company||'All leads'}</div>
+      </div>
+      <div class="cal-reminder-text">${r.note}</div>
+      <button class="cal-reminder-del" onclick="deleteReminder(${r.id})" title="Delete">×</button>
+    </div>`).join('');
+}
+
+function formatReminderDate(dateStr){
+  try{
+    const d = new Date(dateStr+'T00:00:00');
+    return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  }catch{ return dateStr; }
+}
+
+async function addReminder(){
+  const note = document.getElementById('cal-note-input').value.trim();
+  const date = document.getElementById('cal-date-input').value;
+  if(!note || !date){ alert('Please enter a note and date.'); return; }
+  const btn = document.querySelector('.cal-add-btn');
+  btn.disabled=true; btn.textContent='Saving…';
+  try{
+    const r = await fetch('/reminders', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        note, date,
+        lead_id: currentData?.id || null,
+        company: currentData?.company || '',
+        ai_suggested: false
+      })
+    });
+    if(r.ok){
+      document.getElementById('cal-note-input').value='';
+      await loadReminders();
+    }
+  }catch(e){ alert('Could not save reminder.'); }
+  btn.disabled=false; btn.textContent='Add reminder →';
+}
+
+async function deleteReminder(id){
+  try{
+    await fetch(`/reminders/${id}`, {method:'DELETE'});
+    await loadReminders();
+  }catch(e){}
+}
+
+async function getAISuggestion(){
+  if(!currentData?.id){ alert('Please select a lead first.'); return; }
+  const btn = document.getElementById('cal-ai-btn');
+  const result = document.getElementById('cal-ai-result');
+  btn.disabled=true; btn.textContent='Thinking…';
+  result.style.display='none';
+  try{
+    const r = await fetch('/reminders/ai-suggest', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        lead_id: currentData.id,
+        company: currentData.company,
+        profile: currentData.profile||''
+      })
+    });
+    const data = await r.json();
+    if(data.suggestion){
+      result.style.display='block';
+      result.innerHTML=`<strong style="color:var(--purple2)">Suggested date:</strong> ${formatReminderDate(data.date)}<br/><strong style="color:var(--purple2)">Reason:</strong> ${data.suggestion}<br/><br/>
+      <button style="background:linear-gradient(135deg,var(--purple),var(--cyan));border:none;color:#fff;padding:6px 14px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;margin-top:4px" onclick="acceptAISuggestion('${data.date}','${data.suggestion.replace(/'/g,"\\'")}')">Add to calendar →</button>`;
+    } else {
+      result.style.display='block';
+      result.textContent = data.error || 'No notes found for this lead yet. Add some notes first.';
+    }
+  }catch(e){
+    result.style.display='block';
+    result.textContent='Could not get suggestion. Check your Groq API key.';
+  }
+  btn.disabled=false; btn.textContent='Suggest follow-up →';
+}
+
+async function acceptAISuggestion(date, note){
+  try{
+    const r = await fetch('/reminders', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        note, date,
+        lead_id: currentData?.id || null,
+        company: currentData?.company || '',
+        ai_suggested: true
+      })
+    });
+    if(r.ok){
+      document.getElementById('cal-ai-result').style.display='none';
+      await loadReminders();
+    }
+  }catch(e){}
+}
 </script>
 </body>
 </html>
