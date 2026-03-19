@@ -69,64 +69,99 @@ else:
     import sqlite3
     print("Using SQLite database")
 
+# ── DB WRAPPER — makes conn.execute() work the same for SQLite and PostgreSQL ──
+
+class DBCursor:
+    def __init__(self, cur, is_pg):
+        self._cur = cur
+        self._is_pg = is_pg
+
+    def fetchone(self):
+        row = self._cur.fetchone()
+        return dict(row) if row else None
+
+    def fetchall(self):
+        return [dict(r) for r in self._cur.fetchall()]
+
+    @property
+    def lastrowid(self):
+        """
+        For PostgreSQL with autocommit=True, RETURNING id is the only reliable
+        way to get the inserted row's id. We use RETURNING in INSERT statements
+        (see DBConn.execute) so the cursor already holds the value — just fetch it.
+        For SQLite, use the native lastrowid.
+        """
+        if self._is_pg:
+            row = self._cur.fetchone()
+            if row:
+                # row is already a dict via RealDictCursor
+                return row.get("id") or list(row.values())[0]
+            return None
+        return self._cur.lastrowid
+
+
+class DBConn:
+    def __init__(self, conn, is_pg):
+        self._conn = conn
+        self._is_pg = is_pg
+
+    def execute(self, sql, params=()):
+        if self._is_pg:
+            # Swap SQLite ? placeholders to PostgreSQL %s
+            sql = sql.replace("?", "%s")
+            # Swap SQLite-only INSERT OR IGNORE to PostgreSQL equivalent
+            sql = sql.replace("INSERT OR IGNORE INTO", "INSERT INTO").replace(
+                "INSERT OR REPLACE INTO", "INSERT INTO"
+            )
+            # For INSERT statements append RETURNING id so lastrowid works reliably
+            sql_stripped = sql.strip().upper()
+            if sql_stripped.startswith("INSERT") and "RETURNING" not in sql_stripped:
+                sql = sql.rstrip("; \n") + " RETURNING id"
+            cur = self._conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+        else:
+            cur = self._conn.cursor()
+        cur.execute(sql, params)
+        return DBCursor(cur, self._is_pg)
+
+    def commit(self):
+        # With autocommit=True on PostgreSQL this is a no-op, but kept so
+        # all call-sites work unchanged without modification.
+        if not self._is_pg:
+            self._conn.commit()
+
+    def close(self):
+        self._conn.close()
+
+
 def get_db():
+    """
+    Open and return a DBConn wrapper.
+
+    PostgreSQL  → autocommit=True  : every statement commits immediately,
+                                     so data is never lost when the process
+                                     exits or Render spins the dyno down.
+    SQLite      → default behaviour (autocommit off, explicit commit required).
+    """
     if USE_POSTGRES:
         conn = psycopg2.connect(DB_URL)
-        conn.autocommit = False
-        return conn
+        conn.autocommit = True          # ← instant persistence on every statement
+        return DBConn(conn, is_pg=True)
     else:
-        conn = sqlite3.connect("leadlens.db")
-        conn.row_factory = sqlite3.Row
-        return conn
+        import sqlite3 as _sq
+        conn = _sq.connect("leadlens.db")
+        conn.row_factory = _sq.Row
+        return DBConn(conn, is_pg=False)
 
-def db_execute(conn, sql, params=()):
-    """Execute a query — handles both SQLite and PostgreSQL placeholder differences."""
-    if USE_POSTGRES:
-        # PostgreSQL uses %s placeholders, SQLite uses ?
-        sql = sql.replace("?", "%s")
-        # PostgreSQL uses SERIAL not AUTOINCREMENT
-        cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
-    else:
-        cur = conn.cursor()
-    cur.execute(sql, params)
-    return cur
-
-def fetchall(cur):
-    rows = cur.fetchall()
-    if USE_POSTGRES:
-        return [dict(r) for r in rows]
-    else:
-        return [dict(r) for r in rows]
-
-def fetchone(cur):
-    row = cur.fetchone()
-    if row is None:
-        return None
-    if USE_POSTGRES:
-        return dict(row)
-    else:
-        return dict(row)
-
-def last_insert_id(conn, cur, table="leads"):
-    if USE_POSTGRES:
-        cur2 = conn.cursor()
-        cur2.execute(f"SELECT lastval()")
-        return cur2.fetchone()[0]
-    else:
-        return cur.lastrowid
 
 def init_db():
     conn = get_db()
     if USE_POSTGRES:
-        cur = conn.cursor()
         serial = "SERIAL PRIMARY KEY"
-        text_pk = "SERIAL PRIMARY KEY"
     else:
-        cur = conn.cursor()
         serial = "INTEGER PRIMARY KEY AUTOINCREMENT"
-        text_pk = "INTEGER PRIMARY KEY AUTOINCREMENT"
 
-    cur.execute(f"""
+    # ── Schema creation ──────────────────────────────────────────────────────
+    conn.execute(f"""
         CREATE TABLE IF NOT EXISTS users (
             id             {serial},
             email          TEXT    NOT NULL UNIQUE,
@@ -137,7 +172,7 @@ def init_db():
             created_at     TEXT    NOT NULL
         )
     """)
-    cur.execute(f"""
+    conn.execute(f"""
         CREATE TABLE IF NOT EXISTS invitation_codes (
             id         {serial},
             code       TEXT    NOT NULL UNIQUE,
@@ -146,14 +181,14 @@ def init_db():
             created_at TEXT    NOT NULL
         )
     """)
-    cur.execute(f"""
+    conn.execute(f"""
         CREATE TABLE IF NOT EXISTS early_access (
             id         {serial},
             email      TEXT    NOT NULL UNIQUE,
             created_at TEXT    NOT NULL
         )
     """)
-    cur.execute(f"""
+    conn.execute(f"""
         CREATE TABLE IF NOT EXISTS access_requests (
             id          {serial},
             user_id     INTEGER NOT NULL,
@@ -163,7 +198,7 @@ def init_db():
             resolved_at TEXT    DEFAULT NULL
         )
     """)
-    cur.execute(f"""
+    conn.execute(f"""
         CREATE TABLE IF NOT EXISTS leads (
             id               {serial},
             user_id          INTEGER NOT NULL DEFAULT 0,
@@ -188,7 +223,7 @@ def init_db():
             created_at       TEXT
         )
     """)
-    cur.execute(f"""
+    conn.execute(f"""
         CREATE TABLE IF NOT EXISTS reminders (
             id           {serial},
             user_id      INTEGER NOT NULL,
@@ -200,7 +235,7 @@ def init_db():
             created_at   TEXT    NOT NULL
         )
     """)
-    cur.execute(f"""
+    conn.execute(f"""
         CREATE TABLE IF NOT EXISTS lead_notes (
             id         {serial},
             lead_id    INTEGER NOT NULL,
@@ -210,59 +245,21 @@ def init_db():
         )
     """)
 
-    # SQLite-only migrations
+    # SQLite-only migrations (PostgreSQL columns are created fresh above)
     if not USE_POSTGRES:
         try:
-            cur.execute("ALTER TABLE leads ADD COLUMN user_id INTEGER NOT NULL DEFAULT 0")
-        except: pass
+            conn.execute("ALTER TABLE leads ADD COLUMN user_id INTEGER NOT NULL DEFAULT 0")
+        except Exception:
+            pass
         try:
-            cur.execute("ALTER TABLE leads ADD COLUMN user_role TEXT DEFAULT ''")
-        except: pass
+            conn.execute("ALTER TABLE leads ADD COLUMN user_role TEXT DEFAULT ''")
+        except Exception:
+            pass
+        conn.commit()
 
-    conn.commit()
     conn.close()
 
 init_db()
-
-# ── DB WRAPPER — makes conn.execute() work the same for SQLite and PostgreSQL ──
-
-class DBCursor:
-    def __init__(self, cur, is_pg):
-        self._cur = cur; self._is_pg = is_pg
-    def fetchone(self):
-        row = self._cur.fetchone()
-        return dict(row) if row else None
-    def fetchall(self):
-        return [dict(r) for r in self._cur.fetchall()]
-    @property
-    def lastrowid(self):
-        if self._is_pg:
-            self._cur.execute("SELECT lastval()"); return self._cur.fetchone()[0]
-        return self._cur.lastrowid
-
-class DBConn:
-    def __init__(self, conn, is_pg):
-        self._conn = conn; self._is_pg = is_pg
-    def execute(self, sql, params=()):
-        if self._is_pg:
-            sql = sql.replace("?", "%s")
-            cur = self._conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
-        else:
-            cur = self._conn.cursor()
-        cur.execute(sql, params)
-        return DBCursor(cur, self._is_pg)
-    def commit(self): self._conn.commit()
-    def close(self):  self._conn.close()
-
-def get_db():
-    if USE_POSTGRES:
-        conn = psycopg2.connect(DB_URL)
-        return DBConn(conn, is_pg=True)
-    else:
-        import sqlite3 as _sq
-        conn = _sq.connect("leadlens.db")
-        conn.row_factory = _sq.Row
-        return DBConn(conn, is_pg=False)
 
 
 # ──────────────────────────────────────────────
@@ -344,20 +341,29 @@ def register():
     pw_hash    = hash_password(password)
     created_at = datetime.now().strftime("%b %d, %Y %I:%M %p")
 
-    conn.execute("""
-        INSERT INTO users (email, password_hash, invite_code, report_count, report_limit, created_at)
-        VALUES (?, ?, ?, 0, ?, ?)
-    """, (email, pw_hash, code, REPORT_LIMIT, created_at))
+    try:
+        conn.execute("""
+            INSERT INTO users (email, password_hash, invite_code, report_count, report_limit, created_at)
+            VALUES (?, ?, ?, 0, ?, ?)
+        """, (email, pw_hash, code, REPORT_LIMIT, created_at))
 
-    # Mark invite as used
-    conn.execute("""
-        UPDATE invitation_codes SET used = 1, used_by = ? WHERE code = ?
-    """, (email, code))
+        # Mark invite as used
+        conn.execute("""
+            UPDATE invitation_codes SET used = 1, used_by = ? WHERE code = ?
+        """, (email, code))
 
-    conn.commit()
+        # SQLite needs an explicit commit; PG autocommit=True handles it already
+        conn.commit()
+    except Exception as e:
+        print("register DB error:", e)
+        conn.close()
+        return jsonify({"error": "Account creation failed. Please try again."}), 500
 
     user = conn.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
     conn.close()
+
+    if not user:
+        return jsonify({"error": "Account created but session could not be started. Please log in."}), 500
 
     session["user_id"] = user["id"]
     session["user_email"] = user["email"]
@@ -397,14 +403,21 @@ def early_access():
         return jsonify({"error": "Email required"}), 400
     try:
         conn = get_db()
-        conn.execute(
-            "INSERT OR IGNORE INTO early_access (email, created_at) VALUES (?, ?)",
-            (email, datetime.now().strftime("%b %d, %Y %I:%M %p"))
-        )
-        conn.commit()
+        if USE_POSTGRES:
+            # PostgreSQL does not support INSERT OR IGNORE — use ON CONFLICT instead
+            conn.execute(
+                "INSERT INTO early_access (email, created_at) VALUES (?, ?) ON CONFLICT (email) DO NOTHING",
+                (email, datetime.now().strftime("%b %d, %Y %I:%M %p"))
+            )
+        else:
+            conn.execute(
+                "INSERT OR IGNORE INTO early_access (email, created_at) VALUES (?, ?)",
+                (email, datetime.now().strftime("%b %d, %Y %I:%M %p"))
+            )
+            conn.commit()
         conn.close()
-    except:
-        pass
+    except Exception as e:
+        print("early_access error:", e)
     return jsonify({"success": True})
 
 # ──────────────────────────────────────────────
@@ -754,8 +767,8 @@ Return ONLY raw JSON:
             "email":"","talk_track":"","linkedin":"","competitor_battle":"","email_sequence":"",
             "notes":"","created_at":created_at
         }
+        conn = get_db()
         try:
-            conn = get_db()
             lead_cur = conn.execute("""
                 INSERT INTO leads (user_id,company,user_name,user_role,product,
                     scores,fit_check,signals,profile,opener,questions,objections,next_steps,
@@ -772,11 +785,14 @@ Return ONLY raw JSON:
                 (session["user_id"],)
             )
             conn.commit()
-            conn.close()
             result["id"] = lead_id
+            print(f"Lead saved (fit-fail): ID {lead_id} | User: {session.get('user_id')}")
         except Exception as e:
             print("DB error (fit fail):", e)
             result["id"] = None
+            result["db_warning"] = "Report generated but could not be saved. Please screenshot your results."
+        finally:
+            conn.close()
         return jsonify(result)
 
     # ── Buying signals ──
@@ -1031,8 +1047,8 @@ Subject: [subject]
         "notes": "", "created_at": created_at
     }
 
+    conn = get_db()
     try:
-        conn = get_db()
         lead_cur = conn.execute("""
             INSERT INTO leads (
                 user_id, company, user_name, user_role, product,
@@ -1050,18 +1066,21 @@ Subject: [subject]
             email_sequence, "", created_at
         ))
         lead_id = lead_cur.lastrowid
-        # Increment report count
+        # Increment report count — both writes happen atomically on SQLite;
+        # on PostgreSQL each statement auto-commits so both are guaranteed durable.
         conn.execute(
             "UPDATE users SET report_count = report_count + 1 WHERE id = ?",
             (session["user_id"],)
         )
         conn.commit()
-        conn.close()
         result["id"] = lead_id
         print(f"Lead saved: ID {lead_id} | User: {user['email']}")
     except Exception as e:
-        print("DB error:", e)
+        print("DB error (research save):", e)
         result["id"] = None
+        result["db_warning"] = "Report generated but could not be saved. Please screenshot your results."
+    finally:
+        conn.close()
 
     # Return remaining count so frontend can update UI
     updated_user = get_current_user()
