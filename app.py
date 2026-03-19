@@ -586,6 +586,7 @@ def ask_ai_json(prompt, retries=3):
             message = claude.messages.create(
                 model=MODEL,
                 max_tokens=1024,
+                temperature=0,
                 system="You are a senior sales intelligence analyst. Never mention AI or language models. Respond only in valid JSON format. No markdown, no backticks, no explanation. Just the raw JSON object.",
                 messages=[{"role": "user", "content": prompt}]
             )
