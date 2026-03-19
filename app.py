@@ -755,7 +755,7 @@ Return ONLY raw JSON:
         }
         try:
             conn = get_db()
-            conn.execute("""
+            lead_cur = conn.execute("""
                 INSERT INTO leads (user_id,company,user_name,user_role,product,
                     scores,fit_check,signals,profile,opener,questions,objections,next_steps,
                     email,talk_track,linkedin,competitor_battle,email_sequence,notes,created_at)
@@ -765,7 +765,7 @@ Return ONLY raw JSON:
                 json.dumps(result["scores"]), json.dumps(fit_check), json.dumps({}),
                 "","","","","","","","","","","", created_at
             ))
-            lead_id = conn.execute("SELECT last_insert_rowid()").fetchone()[0]
+            lead_id = lead_cur.lastrowid
             conn.execute(
                 "UPDATE users SET report_count = report_count + 1 WHERE id = ?",
                 (session["user_id"],)
@@ -1032,7 +1032,7 @@ Subject: [subject]
 
     try:
         conn = get_db()
-        conn.execute("""
+        lead_cur = conn.execute("""
             INSERT INTO leads (
                 user_id, company, user_name, user_role, product,
                 scores, fit_check, signals,
@@ -1048,7 +1048,7 @@ Subject: [subject]
             email, talk_track, linkedin, competitor_battle,
             email_sequence, "", created_at
         ))
-        lead_id = conn.execute("SELECT last_insert_rowid()").fetchone()[0]
+        lead_id = lead_cur.lastrowid
         # Increment report count
         conn.execute(
             "UPDATE users SET report_count = report_count + 1 WHERE id = ?",
