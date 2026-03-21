@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Join {{ org_name or "LeadLens" }} — LeadLens</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08080F;--card:#0D0D1A;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
+  --purple:#7C3AED;--cyan:#06B6D4;--green:#10B981;--red:#EF4444;
+  --text:#E8E8FF;--text2:#9898BB;--text3:#5858AA;
+  --grad:linear-gradient(135deg,#7C3AED,#06B6D4);
+}
+body{
+  font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:24px;
+}
+/* ambient orbs */
+body::before,body::after{
+  content:'';position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;
+}
+body::before{
+  width:600px;height:600px;background:#7C3AED;opacity:0.1;
+  top:-200px;left:-150px;
+}
+body::after{
+  width:500px;height:500px;background:#06B6D4;opacity:0.08;
+  bottom:-150px;right:-100px;
+}
+
+.wrap{
+  width:100%;max-width:420px;position:relative;z-index:1;
+  animation:fadeIn 0.4s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* logo */
+.logo{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:32px}
+.logo-gem{
+  width:36px;height:36px;border-radius:10px;background:var(--grad);
+  display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+}
+.logo-gem::after{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
+  animation:shimmer 3s infinite;
+}
+@keyframes shimmer{0%{left:-100%}100%{left:100%}}
+.logo-gem svg{width:18px;height:18px;position:relative;z-index:1}
+.logo-word{font-size:1.15rem;font-weight:800;letter-spacing:-0.03em;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* card */
+.card{
+  background:var(--card);border:1px solid var(--border2);border-radius:18px;
+  padding:36px 32px;box-shadow:0 20px 60px rgba(0,0,0,0.35);
+}
+
+/* error state */
+.error-icon{
+  width:56px;height:56px;border-radius:16px;background:rgba(239,68,68,0.12);
+  border:1px solid rgba(239,68,68,0.25);display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+}
+.error-icon svg{width:26px;height:26px;color:var(--red)}
+
+/* invite header */
+.invite-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);
+  border-radius:20px;padding:4px 12px;font-size:0.72rem;font-weight:600;
+  color:#a78bfa;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:16px;
+}
+.invite-badge svg{width:12px;height:12px}
+.card-title{font-size:1.25rem;font-weight:700;margin-bottom:6px;line-height:1.3}
+.card-title span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card-sub{font-size:0.84rem;color:var(--text2);margin-bottom:28px;line-height:1.6}
+
+/* form */
+.form-group{margin-bottom:16px}
+.form-group label{
+  display:block;font-size:0.74rem;font-weight:600;color:var(--text2);
+  text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;
+}
+.form-group input{
+  width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border2);
+  border-radius:9px;padding:11px 14px;color:var(--text);font-family:'Inter',sans-serif;
+  font-size:0.9rem;outline:none;transition:all 0.2s;
+}
+.form-group input:focus{border-color:var(--purple);background:rgba(124,58,237,0.06);box-shadow:0 0 0 3px rgba(124,58,237,0.1)}
+.form-group input::placeholder{color:var(--text3)}
+.form-group input:read-only{opacity:0.55;cursor:default}
+
+.submit-btn{
+  width:100%;background:var(--grad);color:#fff;border:none;border-radius:9px;
+  padding:13px;font-family:'Inter',sans-serif;font-size:0.9rem;font-weight:700;
+  cursor:pointer;margin-top:8px;position:relative;overflow:hidden;transition:opacity 0.2s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.submit-btn::after{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
+  transition:left 0.5s;
+}
+.submit-btn:hover::after{left:100%}
+.submit-btn:hover{opacity:0.9;transform:translateY(-1px)}
+.submit-btn:disabled{opacity:0.45;cursor:not-allowed;transform:none}
+
+.inline-error{
+  background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);
+  border-radius:8px;padding:10px 13px;font-size:0.82rem;color:var(--red);
+  margin-bottom:16px;display:none;
+}
+.inline-error.show{display:block}
+.inline-success{
+  background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);
+  border-radius:8px;padding:10px 13px;font-size:0.82rem;color:var(--green);
+  margin-bottom:16px;display:none;
+}
+.inline-success.show{display:block}
+
+.divider{
+  text-align:center;font-size:0.78rem;color:var(--text3);
+  margin-top:22px;padding-top:20px;border-top:1px solid var(--border);
+}
+.divider a{color:#a78bfa;text-decoration:none;font-weight:500}
+.divider a:hover{text-decoration:underline}
+
+/* password hint */
+.pw-hint{font-size:0.73rem;color:var(--text3);margin-top:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Logo -->
+  <div class="logo">
+    <div class="logo-gem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    </div>
+    <span class="logo-word">LeadLens</span>
+  </div>
+
+  <div class="card">
+
+    {% if error %}
+    <!-- ── Invalid / used code ── -->
+    <div class="error-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
+      </svg>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:1.1rem;font-weight:700;margin-bottom:8px">Invalid Invite Link</div>
+      <div style="font-size:0.85rem;color:var(--text2);line-height:1.6;margin-bottom:24px">
+        This invite link is invalid or has already been used.<br/>
+        Ask your team owner to generate a new one.
+      </div>
+      <a href="/" style="color:#a78bfa;font-size:0.84rem;font-weight:500;text-decoration:none">
+        ← Back to LeadLens
+      </a>
+    </div>
+
+    {% else %}
+    <!-- ── Valid invite — registration form ── -->
+    <div class="invite-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      You're invited
+    </div>
+
+    <div class="card-title">
+      Join <span>{{ org_name }}</span> on LeadLens
+    </div>
+    <div class="card-sub">
+      Create your account to start generating AI-powered sales intelligence for your team.
+    </div>
+
+    <div class="inline-error" id="form-error"></div>
+    <div class="inline-success" id="form-success"></div>
+
+    <form id="join-form" onsubmit="submitJoin(event)">
+      <div class="form-group">
+        <label>Email address</label>
+        <input type="email" id="j-email" placeholder="you@company.com" required autocomplete="email"/>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="j-password" placeholder="At least 8 characters" required autocomplete="new-password"/>
+        <div class="pw-hint">Minimum 8 characters</div>
+      </div>
+      <div class="form-group" style="display:none">
+        <input type="text" id="j-code" value="{{ code }}" readonly/>
+      </div>
+      <button type="submit" class="submit-btn" id="join-btn">
+        Create Account
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </button>
+    </form>
+
+    <div class="divider">
+      Already have an account? <a href="/">Sign in →</a>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<script>
+async function submitJoin(e) {
+  e.preventDefault();
+  const email    = document.getElementById('j-email').value.trim();
+  const password = document.getElementById('j-password').value;
+  const code     = document.getElementById('j-code').value.trim();
+  const errEl    = document.getElementById('form-error');
+  const okEl     = document.getElementById('form-success');
+  const btn      = document.getElementById('join-btn');
+
+  errEl.classList.remove('show');
+  okEl.classList.remove('show');
+
+  if (password.length < 8) {
+    errEl.textContent = 'Password must be at least 8 characters.';
+    errEl.classList.add('show');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Creating account…';
+
+  try {
+    const res = await fetch('/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password, invitation_code: code })
+    });
+    const data = await res.json();
+
+    if (res.ok && data.token) {
+      localStorage.setItem('ll_token', data.token);
+      localStorage.setItem('ll_role', data.role || '');
+      localStorage.setItem('ll_org_name', data.org_name || '');
+      okEl.textContent = '✓ Account created! Taking you to your dashboard…';
+      okEl.classList.add('show');
+      setTimeout(() => { window.location.href = '/dashboard'; }, 1200);
+    } else {
+      errEl.textContent = data.detail || 'Something went wrong. Please try again.';
+      errEl.classList.add('show');
+      btn.disabled = false;
+      btn.innerHTML = 'Create Account <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+    }
+  } catch {
+    errEl.textContent = 'Connection error. Please try again.';
+    errEl.classList.add('show');
+    btn.disabled = false;
+    btn.innerHTML = 'Create Account <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+  }
+}
+</script>
+</body>
+</html>

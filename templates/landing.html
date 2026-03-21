@@ -624,8 +624,13 @@ async function handleLogin(){
   try{
     const res=await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
     const data=await res.json();
-    if(res.ok){showMsg('login-success','✓ Signed in. Redirecting…');setTimeout(()=>{window.location.href='/dashboard'},1000)}
-    else showMsg('login-error',data.error||'Invalid email or password.')
+    if(res.ok&&data.token){
+      localStorage.setItem('ll_token',data.token);
+      localStorage.setItem('ll_role', data.role||'');
+      localStorage.setItem('ll_org_name', data.org_name||'');
+      showMsg('login-success','✓ Signed in. Redirecting…');
+      setTimeout(()=>{window.location.href='/dashboard'},1000);
+    } else showMsg('login-error',data.error||'Invalid email or password.')
   }catch{showMsg('login-error','Connection error. Please try again.')}
   btn.disabled=false;btn.textContent='Sign In →';
 }
@@ -642,8 +647,13 @@ async function handleRegister(){
   try{
     const res=await fetch('/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password,invitation_code:code})});
     const data=await res.json();
-    if(res.ok){showMsg('register-success','✓ Account created! Redirecting…');setTimeout(()=>{window.location.href='/dashboard'},1200)}
-    else showMsg('register-error',data.error||'Check your invitation code and try again.')
+    if(res.ok&&data.token){
+      localStorage.setItem('ll_token',data.token);
+      localStorage.setItem('ll_role', data.role||'');
+      localStorage.setItem('ll_org_name', data.org_name||'');
+      showMsg('register-success','✓ Account created! Redirecting…');
+      setTimeout(()=>{window.location.href='/dashboard'},1200);
+    } else showMsg('register-error',data.error||'Check your invitation code and try again.')
   }catch{showMsg('register-error','Connection error. Please try again.')}
   btn.disabled=false;btn.textContent='Create Account →';
 }

@@ -1,7 +1,11 @@
-.env
 venv/
-leadlens.db
 __pycache__/
 *.pyc
+.env
 *.db
 .DS_Store
+app.py
+agent.py
+report.md
+LICENSE
+leadlens.db

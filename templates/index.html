@@ -303,6 +303,60 @@ body{display:flex;overflow:hidden}
 .cal-reminder-del:hover{color:var(--red)}
 .cal-empty-reminders{font-size:11px;color:var(--text2);opacity:0.35;text-align:center;padding:16px 0}
 
+/* ── TEAM ANALYTICS ── */
+#team-panel{display:none;animation:fadeIn 0.4s ease}
+.team-header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.team-header-row h2{font-size:15px;font-weight:800;background:linear-gradient(135deg,var(--text),#8888CC);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.team-refresh-btn{background:var(--input);border:1px solid var(--border2);border-radius:7px;padding:5px 12px;font-size:11px;color:var(--text2);cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:5px;font-family:'Inter',sans-serif}
+.team-refresh-btn:hover{border-color:var(--purple);color:#a78bfa}
+.team-section-hdr{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--text2);opacity:0.55;margin:20px 0 10px;display:flex;align-items:center;gap:8px}
+.team-section-hdr::after{content:'';flex:1;height:1px;background:var(--border)}
+.team-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px}
+.team-stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;position:relative;overflow:hidden;transition:all 0.2s;animation:fadeIn 0.4s ease}
+.team-stat-card:hover{border-color:var(--border2);transform:translateY(-1px)}
+.team-stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--cyan))}
+.team-stat-lbl{font-size:8px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.1em;opacity:0.65;margin-bottom:6px}
+.team-stat-val{font-size:30px;font-weight:800;letter-spacing:-1.5px;background:linear-gradient(135deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.team-stat-sub{font-size:9px;color:var(--text2);margin-top:4px;opacity:0.5}
+.team-table-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:4px}
+.team-table{width:100%;border-collapse:collapse}
+.team-table th{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--text2);opacity:0.5;padding:10px 14px;background:var(--input);border-bottom:1px solid var(--border);text-align:left;white-space:nowrap}
+.team-table td{padding:11px 14px;border-bottom:1px solid var(--border);font-size:11px;color:var(--text2);vertical-align:middle}
+.team-table tr:last-child td{border-bottom:none}
+.team-table tr:hover td{background:rgba(255,255,255,0.018)}
+.role-badge{font-size:8px;font-weight:800;padding:2px 9px;border-radius:99px;border:1px solid;white-space:nowrap}
+.role-badge.owner{background:rgba(124,58,237,0.15);border-color:rgba(124,58,237,0.35);color:#a78bfa}
+.role-badge.admin{background:rgba(6,182,212,0.12);border-color:rgba(6,182,212,0.3);color:var(--cyan)}
+.role-badge.member{background:var(--input);border-color:var(--border2);color:var(--text2)}
+.team-score-bar-wrap{display:flex;align-items:center;gap:8px;min-width:90px}
+.team-score-bar-track{flex:1;height:4px;border-radius:99px;background:var(--border2);overflow:hidden}
+.team-score-bar-fill{height:100%;border-radius:99px;transition:width 1.2s cubic-bezier(0.4,0,0.2,1)}
+.status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;animation:dotpulse 2.5s ease-in-out infinite;display:inline-block}
+.status-dot.active{background:var(--green)}
+.status-dot.stale{background:var(--amber)}
+.status-dot.inactive{background:var(--red)}
+.team-feed{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.team-feed-row{display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;animation:fadeIn 0.3s ease}
+.team-feed-row:last-child{border-bottom:none}
+.team-feed-row:hover{background:rgba(255,255,255,0.022)}
+.team-feed-row.locked{cursor:default}
+.team-feed-company{font-size:12px;font-weight:600;color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.team-feed-by{font-size:10px;color:var(--text2);opacity:0.6;min-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.team-feed-score{font-size:9px;font-weight:800;padding:2px 9px;border-radius:99px;border:1px solid;white-space:nowrap;flex-shrink:0}
+.team-feed-score.hot{background:#10B98115;border-color:#10B98128;color:var(--green)}
+.team-feed-score.warm{background:#F59E0B15;border-color:#F59E0B28;color:var(--amber)}
+.team-feed-score.cold{background:#EF444415;border-color:#EF444428;color:var(--red)}
+.team-feed-sector{font-size:9px;color:var(--text2);opacity:0.45;min-width:55px;text-transform:capitalize}
+.team-feed-date{font-size:9px;color:var(--text2);opacity:0.4;white-space:nowrap;flex-shrink:0}
+.team-feed-lock{font-size:12px;flex-shrink:0;opacity:0.4}
+.team-empty{text-align:center;padding:48px 20px;color:var(--text2)}
+.team-empty-icon{font-size:36px;margin-bottom:14px;opacity:0.35}
+.team-empty-text{font-size:12px;opacity:0.5;line-height:1.7;max-width:300px;margin:0 auto}
+.team-upgrade-cta{background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(6,182,212,0.05));border:1px solid rgba(124,58,237,0.22);border-radius:14px;padding:28px;text-align:center;animation:fadeIn 0.4s ease}
+.team-upgrade-cta h3{font-size:15px;font-weight:700;color:#a78bfa;margin-bottom:7px}
+.team-upgrade-cta p{font-size:11px;color:var(--text2);opacity:0.65;line-height:1.65;margin-bottom:16px}
+.team-cta-btn{background:linear-gradient(135deg,var(--purple),var(--cyan));color:#fff;border:none;border-radius:9px;padding:10px 28px;font-size:12px;font-weight:700;cursor:pointer;transition:opacity 0.2s;font-family:'Inter',sans-serif}
+.team-cta-btn:hover{opacity:0.88}
 /* ── SIDEBAR UPCOMING REMINDERS ── */
 .sb-upcoming{padding:10px;border-top:1px solid var(--border);position:relative;z-index:1}
 .sb-upcoming-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
@@ -350,6 +404,41 @@ body{display:flex;overflow:hidden}
 .pipe-card:hover{transform:translateX(3px)}
 .pipe-card-name{font-size:11px;font-weight:600}
 .pipe-card-meta{font-size:9px;margin-top:2px;opacity:0.6}
+
+/* ── BRIEF TAB REDESIGN ── */
+.brief-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.brief-fact-card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:12px 14px;transition:border-color 0.2s;animation:fadeIn 0.4s ease}
+.brief-fact-card:hover{border-color:var(--border2)}
+.brief-fact-lbl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text2);opacity:0.6;margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.brief-fact-val{font-size:12px;font-weight:600;color:var(--text);line-height:1.4}
+.brief-fact-val.na{color:var(--text2);opacity:0.4;font-style:italic;font-weight:400}
+
+.bc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.bc-card{border-radius:11px;padding:13px 14px;border:1px solid;animation:fadeIn 0.4s ease;transition:all 0.2s}
+.bc-card:hover{transform:translateY(-2px)}
+.bc-card.champion{background:linear-gradient(135deg,#7C3AED10,#7C3AED05);border-color:#7C3AED25}
+.bc-card.buyer{background:linear-gradient(135deg,#10B98110,#10B98105);border-color:#10B98125}
+.bc-card.gatekeeper{background:linear-gradient(135deg,#F59E0B10,#F59E0B05);border-color:#F59E0B25}
+.bc-role-badge{display:inline-flex;align-items:center;gap:4px;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;padding:2px 8px;border-radius:99px;margin-bottom:8px}
+.bc-card.champion .bc-role-badge{background:#7C3AED18;color:#A78BFA;border:1px solid #7C3AED30}
+.bc-card.buyer .bc-role-badge{background:#10B98118;color:var(--green);border:1px solid #10B98130}
+.bc-card.gatekeeper .bc-role-badge{background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B30}
+.bc-title{font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.3}
+.bc-pain{font-size:10px;color:var(--text2);line-height:1.55;opacity:0.8}
+.bc-contact{margin-top:8px;padding-top:8px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:3px}
+.bc-contact-row{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--text2)}
+.bc-contact-row.na{opacity:0.35;font-style:italic}
+.bc-contact-icon{font-size:10px;flex-shrink:0}
+
+.intel-section{background:var(--card);border:1px solid var(--border);border-radius:11px;overflow:hidden;margin-bottom:8px;animation:fadeIn 0.4s ease}
+.intel-header{padding:11px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background 0.2s;user-select:none}
+.intel-header:hover{background:var(--input)}
+.intel-header-left{display:flex;align-items:center;gap:8px}
+.intel-tag{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;padding:2px 8px;border-radius:99px;border:1px solid}
+.intel-chevron{font-size:10px;color:var(--text2);transition:transform 0.2s}
+.intel-chevron.open{transform:rotate(180deg)}
+.intel-body{padding:0 14px 14px;font-size:12px;line-height:1.8;color:var(--text2);display:none}
+.intel-body.open{display:block;animation:fadeIn 0.2s ease}
 </style>
 </head>
 <body>
@@ -381,7 +470,7 @@ body{display:flex;overflow:hidden}
   <!-- USER INFO -->
   <div class="user-info-bar">
     <span class="user-email" id="user-email-display">—</span>
-    <button class="logout-btn" onclick="window.location.href='/logout'">Log out</button>
+    <button class="logout-btn" onclick="logout()">Log out</button>
   </div>
 
   <!-- USAGE METER -->
@@ -446,6 +535,43 @@ body{display:flex;overflow:hidden}
         <div class="sb-plan-sub" id="plan-sub">Demo Access · Early 2026</div>
       </div>
     </div>
+    <button id="invite-btn" onclick="openInviteModal()" style="display:none;width:100%;margin-top:8px;background:linear-gradient(135deg,#7C3AED18,#06B6D410);border:1px solid #7C3AED30;border-radius:8px;padding:9px 12px;cursor:pointer;color:#a78bfa;font-size:11px;font-weight:600;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;transition:all 0.2s" onmouseover="this.style.borderColor='#7C3AED60'" onmouseout="this.style.borderColor='#7C3AED30'">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+      Invite Teammate
+    </button>
+    <button id="team-analytics-btn" onclick="openTeamPanel()" style="display:none;width:100%;margin-top:8px;background:linear-gradient(135deg,#06B6D418,#7C3AED10);border:1px solid #06B6D430;border-radius:8px;padding:9px 12px;cursor:pointer;color:var(--cyan);font-size:11px;font-weight:600;font-family:'Inter',sans-serif;align-items:center;justify-content:center;gap:6px;transition:all 0.2s" onmouseover="this.style.borderColor='#06B6D460'" onmouseout="this.style.borderColor='#06B6D430'">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 17.5h7M17.5 14v7"/></svg>
+      Team Analytics
+    </button>
+  </div>
+
+  <!-- ── Invite Modal ── -->
+  <div id="invite-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;padding:24px">
+    <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:18px;padding:28px 26px;width:100%;max-width:420px;box-shadow:0 24px 60px rgba(0,0,0,0.4);animation:fadeIn 0.2s ease;position:relative">
+      <button onclick="closeInviteModal()" style="position:absolute;top:14px;right:14px;background:var(--input);border:1px solid var(--border);border-radius:50%;width:28px;height:28px;cursor:pointer;color:var(--text2);font-size:16px;display:flex;align-items:center;justify-content:center;line-height:1;transition:all 0.2s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">×</button>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+        <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--purple),var(--cyan));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        </div>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:var(--text)">Invite a teammate</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:1px">Share this link — they'll join your org automatically</div>
+        </div>
+      </div>
+      <div style="margin-top:20px" id="invite-loading" style="text-align:center;padding:20px;color:var(--text2);font-size:12px">Generating invite link…</div>
+      <div id="invite-content" style="display:none">
+        <div style="font-size:10px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px">Invite Link</div>
+        <div style="display:flex;gap:6px;margin-bottom:14px">
+          <input id="invite-link-input" type="text" readonly style="flex:1;background:var(--input);border:1px solid var(--border2);border-radius:8px;padding:9px 11px;font-size:11px;color:var(--text);font-family:monospace;outline:none;min-width:0"/>
+          <button id="copy-btn" onclick="copyInviteLink()" style="background:linear-gradient(135deg,var(--purple),var(--cyan));color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:11px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;white-space:nowrap;transition:opacity 0.2s" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Copy Link</button>
+        </div>
+        <button onclick="emailInvite()" style="width:100%;background:var(--input);border:1px solid var(--border2);border-radius:8px;padding:9px 14px;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;color:var(--text2);display:flex;align-items:center;justify-content:center;gap:7px;transition:all 0.2s" onmouseover="this.style.borderColor='var(--border3)'" onmouseout="this.style.borderColor='var(--border2)'">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email Invite
+        </button>
+        <div id="invite-error" style="display:none;margin-top:12px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);border-radius:8px;padding:9px 12px;font-size:11px;color:var(--red)"></div>
+      </div>
+    </div>
   </div>
 
   <!-- LIMIT REACHED BANNER -->
@@ -472,6 +598,15 @@ body{display:flex;overflow:hidden}
     <div class="ig" style="flex:2">
       <label>What You Sell</label>
       <input id="inp-product" type="text" placeholder="Describe your product or service"/>
+    </div>
+    <div class="ig">
+      <label>Sector</label>
+      <select id="inp-sector" style="background:var(--input);border:1px solid var(--inputb);border-radius:8px;padding:8px 11px;font-size:12px;color:var(--text);outline:none;transition:all 0.2s;width:100%;height:35px">
+        <option value="">Generic</option>
+        <option value="mining">⛏ Mining</option>
+        <option value="cleantech">🌱 CleanTech</option>
+        <option value="agtech">🌾 AgTech</option>
+      </select>
     </div>
     <div class="ig" style="flex:2">
       <label>Company to Research</label>
@@ -510,6 +645,7 @@ body{display:flex;overflow:hidden}
     </div>
 
     <div id="report"></div>
+    <div id="team-panel"></div>
   </div>
 </div>
 
@@ -607,7 +743,8 @@ function showEmpty(title,msg,isErr){
 
 async function loadLeadsFromDB(){
   try{
-    const r=await fetch('/leads');
+    const r=await apiFetch('/leads');
+    if(!r)return;
     leads=await r.json();
     updateSidebar();
     if(leads.length>0){
@@ -624,15 +761,31 @@ function runAgent(){
   const role=document.getElementById('inp-role').value.trim();
   const product=document.getElementById('inp-product').value.trim();
   const company=document.getElementById('inp-company').value.trim();
+  const sector=document.getElementById('inp-sector').value;
   if(!name||!product||!company){alert('Please fill in your name, what you sell, and a company name');return;}
+  runAgentWithOptions({name,role,product,company,sector,force_fit:false});
+}
+
+function researchAnyway(){
+  if(isResearching)return;
+  const name=document.getElementById('inp-name').value.trim();
+  const role=document.getElementById('inp-role').value.trim();
+  const product=document.getElementById('inp-product').value.trim();
+  const sector=document.getElementById('inp-sector').value;
+  const company=document.getElementById('inp-company').value.trim()||(currentData?.company||'');
+  if(!name||!product||!company){alert('Please fill in your name, what you sell, and a company name');return;}
+  runAgentWithOptions({name,role,product,company,sector,force_fit:true});
+}
+
+function runAgentWithOptions(payload){
   savePrefs();
-  currentUser={name,role,product};
+  currentUser={name:payload.name,role:payload.role,product:payload.product};
   setResearching(true);
   document.getElementById('empty').style.display='none';
   document.getElementById('report').style.display='none';
   document.getElementById('loading').style.display='flex';
   const iv=animSteps();
-  fetch('/research',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,role,product,company})})
+  apiFetch('/research',{method:'POST',body:JSON.stringify(payload)})
   .then(r=>r.json())
   .then(data=>{
     clearInterval(iv);
@@ -648,7 +801,6 @@ function runAgent(){
     updateSidebar();
     showReport(data);
     document.getElementById('inp-company').value='';
-    // update usage counter after successful report
     if(typeof data.reports_remaining !== 'undefined'){
       const used = (currentUsage.limit - data.reports_remaining);
       updateUsageUI(used, currentUsage.limit);
@@ -671,7 +823,7 @@ function confirmDelete(id,name,e){
 
 async function deleteLead(id){
   try{
-    await fetch(`/leads/${id}`,{method:'DELETE'});
+    await apiFetch(`/leads/${id}`,{method:'DELETE'});
     const idx=leads.findIndex(l=>l.id===id);
     leads.splice(idx,1);
     updateSidebar();
@@ -707,6 +859,7 @@ function updateSidebar(){
     const isActive=currentData&&lead.id===currentData.id;
     const div=document.createElement('div');
     div.className='lead-item'+(isActive?' active':'');
+    div.dataset.id=lead.id;
     div.innerHTML=`
       <button class="lead-del" onclick="confirmDelete(${lead.id},'${(lead.company||'').replace(/'/g,"\\'")}',event)" title="Delete">×</button>
       <div class="lead-name">${lead.company||''}</div>
@@ -722,6 +875,8 @@ function updateSidebar(){
       div.classList.add('active');
       currentData=lead;
       currentUser={name:lead.user_name||'',role:lead.user_role||'',product:lead.product||''};
+      const tp=document.getElementById('team-panel');
+      if(tp)tp.style.display='none';
       showReport(lead);
     };
     list.appendChild(div);
@@ -733,10 +888,14 @@ function fitBanner(fit){
   if(!fit.is_fit){
     return `<div class="fit-warn">
       <div style="font-size:22px;flex-shrink:0">⚠️</div>
-      <div>
+      <div style="flex:1">
         <div class="fit-warn-title">Product fit warning</div>
         <div class="fit-warn-text">${fit.warning||'This company may not be the right fit.'}${fit.right_company?`<br><br>Did you mean: <strong>${fit.right_company}</strong>?`:''}</div>
         ${fit.reasoning?`<div class="fit-reasoning">${fit.reasoning}</div>`:''}
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+          <button onclick="researchAnyway()" style="background:linear-gradient(135deg,var(--purple),var(--cyan));border:none;color:#fff;padding:7px 16px;border-radius:7px;font-size:10px;font-weight:700;cursor:pointer">Research anyway →</button>
+          <span style="font-size:10px;color:var(--text2);opacity:0.6;align-self:center">Override the warning if you know this is a good fit</span>
+        </div>
       </div>
     </div>`;
   }
@@ -816,7 +975,7 @@ function showReport(data){
         </div>
       </div>
       <div class="rpt-acts">
-        <button class="btn-ghost" onclick="showTab('notes',document.querySelectorAll('.tab')[6])">Notes</button>
+        <button class="btn-ghost" onclick="showTab('notes',[...document.querySelectorAll('.tab')].find(b=>b.textContent==='Notes'))">Notes</button>
         <button class="btn-solid" onclick="downloadPDF()">Download PDF</button>
       </div>
     </div>
@@ -824,11 +983,32 @@ function showReport(data){
     ${fitBanner(fit)}
 
     <div class="kpis">
-      <div class="kpi ${GCL(overall)}"><div class="kpi-lbl">Overall score</div><div class="kpi-val" style="color:${GC(overall)}">${overall}</div><div class="kpi-sub">${overall>=70?'Top opportunity':overall>=40?'Worth pursuing':'Low priority'}</div></div>
+      <div class="kpi ${GCL(overall)}"><div class="kpi-lbl">Opportunity score</div><div class="kpi-val" style="color:${GC(overall)}">${overall}</div><div class="kpi-sub">${overall>=70?'Top opportunity':overall>=40?'Worth pursuing':'Low priority'}</div></div>
       <div class="kpi ${GCL(need)}"><div class="kpi-lbl">Product need</div><div class="kpi-val" style="color:${GC(need)}">${need}</div><div class="kpi-sub">${need>=70?'Very high fit':need>=40?'Moderate fit':'Low fit'}</div></div>
       <div class="kpi ${GCL(budget)}"><div class="kpi-lbl">Budget signal</div><div class="kpi-val" style="color:${GC(budget)}">${budget}</div><div class="kpi-sub">${budget>=70?'Strong signals':budget>=40?'Some signals':'Unclear'}</div></div>
       <div class="kpi ${GCL(speed)}"><div class="kpi-lbl">Decision speed</div><div class="kpi-val" style="color:${GC(speed)}">${speed}</div><div class="kpi-sub">${speed>=70?'Fast mover':speed>=40?'Normal cycle':'Slow cycle'}</div></div>
     </div>
+
+    ${ts>0?`<div style="background:${ts>=70?'linear-gradient(135deg,rgba(16,185,129,0.08),rgba(6,182,212,0.04))':ts>=40?'linear-gradient(135deg,rgba(245,158,11,0.08),rgba(249,115,22,0.04))':'linear-gradient(135deg,rgba(239,68,68,0.08),rgba(236,72,153,0.04))'};border:1px solid ${ts>=70?'rgba(16,185,129,0.2)':ts>=40?'rgba(245,158,11,0.2)':'rgba(239,68,68,0.2)'};border-radius:11px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;animation:fadeIn 0.4s ease">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div>
+          <div style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text2);opacity:0.6;margin-bottom:3px">Timing score</div>
+          <div style="display:flex;align-items:baseline;gap:6px">
+            <span style="font-size:28px;font-weight:800;color:${ts>=70?'var(--green)':ts>=40?'var(--amber)':'var(--red)'};letter-spacing:-1px;line-height:1">${ts}</span>
+            <span style="font-size:11px;color:var(--text2);opacity:0.5">/100</span>
+          </div>
+        </div>
+        <div style="width:1px;height:36px;background:var(--border2)"></div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:${ts>=70?'var(--green)':ts>=40?'var(--amber)':'var(--red)'};margin-bottom:2px">${ts>=70?'Reach out NOW':ts>=40?'Good timing':'Wait or skip'}</div>
+          <div style="font-size:10px;color:var(--text2);opacity:0.7;max-width:400px;line-height:1.5">${sigs.recommendation||''}</div>
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:8px;color:var(--text2);opacity:0.5;margin-bottom:4px">How to read this</div>
+        <div style="font-size:9px;color:var(--text2);opacity:0.6;line-height:1.5;max-width:200px">Opportunity score = long-term fit.<br>Timing score = when to act.</div>
+      </div>
+    </div>`:''}
 
     <div class="charts-3">
       <div class="cc"><div class="cc-title">Deal readiness</div><div class="chart-wrap"><canvas id="gaugeChart"></canvas></div></div>
@@ -836,7 +1016,7 @@ function showReport(data){
       <div class="cc">
         <div class="cc-title">Signal strength</div>
         <div style="display:flex;flex-direction:column;gap:9px;padding-top:2px">
-          ${[['Hiring',sigs?.hiring?.score||0],['News',Math.round(overall/10)],['Budget',Math.round(budget/10)],['Fit',Math.round((fit?.confidence||0)/10)]].map(([l,v])=>{
+          ${[['Timing',Math.round(ts/10)],['Hiring',sigs?.hiring?.score||0],['Budget',Math.round(budget/10)],['Fit',Math.round((fit?.confidence||0)/10)]].map(([l,v])=>{
             const pct=v*10;
             const col=pct>=70?'var(--green)':pct>=40?'var(--amber)':'var(--red)';
             return `<div>
@@ -862,16 +1042,129 @@ function showReport(data){
       <button class="tab" onclick="showTab('pipeline',this)">Pipeline</button>
       <button class="tab" onclick="showTab('notes',this)">Notes</button>
       <button class="tab" onclick="showTab('calendar',this)">📅 Calendar</button>
+      ${(()=>{const r=localStorage.getItem('ll_role');return r==='owner'||r==='admin'?'<button class="tab" onclick="showTab(\'team\',this)">👥 Team</button>':''})()}
     </div>
 
     <div id="tab-brief">
-      <div class="sg">
-        <div class="sc full"><span class="sc-tag" style="background:#7C3AED15;border-color:#7C3AED30;color:#A78BFA">Company profile</span><div class="sc-text">${data.profile||'No profile available'}</div></div>
-        <div class="sc"><span class="sc-tag" style="background:#10B98115;border-color:#10B98130;color:var(--green)">Opening line</span><div class="sc-text">${data.opener||''}</div></div>
-        <div class="sc"><span class="sc-tag" style="background:#06B6D415;border-color:#06B6D430;color:var(--cyan)">Discovery questions</span><div class="sc-list">${parseNumList(data.questions||'')}</div></div>
-        <div class="sc"><span class="sc-tag" style="background:#F59E0B15;border-color:#F59E0B30;color:var(--amber)">Objections & responses</span>${parseObjections(data.objections||'')}</div>
-        <div class="sc full"><span class="sc-tag" style="background:#EF444415;border-color:#EF444430;color:var(--red)">Next steps</span><div class="sc-list" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">${parseNumList(data.next_steps||'','var(--red)')}</div></div>
+
+      <!-- AT-A-GLANCE FACTS STRIP -->
+      <div class="brief-grid">
+        <div class="brief-fact-card">
+          <div class="brief-fact-lbl">🏢 Corporate HQ</div>
+          <div class="brief-fact-val ${!data.hq_location||data.hq_location==='Data Not Publicly Available'?'na':''}">${data.hq_location||'Data Not Publicly Available'}</div>
+        </div>
+        <div class="brief-fact-card">
+          <div class="brief-fact-lbl">📍 Site / Operations</div>
+          <div class="brief-fact-val ${!data.site_location||data.site_location==='Data Not Publicly Available'?'na':''}">${data.site_location||'Data Not Publicly Available'}</div>
+        </div>
+        <div class="brief-fact-card">
+          <div class="brief-fact-lbl">🎯 Sector</div>
+          <div class="brief-fact-val">${data.sector?data.sector.charAt(0).toUpperCase()+data.sector.slice(1):'Industrial B2B'}</div>
+        </div>
+        <div class="brief-fact-card">
+          <div class="brief-fact-lbl">👤 Decision Maker</div>
+          <div class="brief-fact-val">${fit.decision_maker||fit.champion_title||'Data Not Publicly Available'}</div>
+        </div>
+        <div class="brief-fact-card">
+          <div class="brief-fact-lbl">🔒 Gatekeeper</div>
+          <div class="brief-fact-val">${fit.gatekeeper_title||'Data Not Publicly Available'}</div>
+        </div>
+        <div class="brief-fact-card">
+          <div class="brief-fact-lbl">⚡ Timing</div>
+          <div class="brief-fact-val" style="color:${sigs.timing_score>=70?'var(--green)':sigs.timing_score>=40?'var(--amber)':'var(--red)'}">${sigs.timing_score>=70?'Reach out now':sigs.timing_score>=40?'Good timing':'Wait or skip'} (${sigs.timing_score||0}/100)</div>
+        </div>
       </div>
+
+      <!-- BUYING COMMITTEE CARDS -->
+      <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text2);opacity:0.5;margin-bottom:8px">Buying committee</div>
+      <div class="bc-grid" style="display:none"><!-- Contact cards hidden until enrichment is production-ready -->
+        ${['champion','economic_buyer','gatekeeper'].map((role,i)=>{
+          const c = (data.contacts||{})[role]||{};
+          const labels = ['⚡ Champion','💰 Economic Buyer','🔒 Gatekeeper'];
+          const cls = ['champion','buyer','gatekeeper'];
+          const pains = [
+            'Focuses on uptime, safety, and operational efficiency. Your day-to-day advocate inside the account.',
+            'Approves budget. Cares about ROI, ESG compliance, and justifiable capex. Signs the contract.',
+            'Evaluates integration, reliability, and security. Can block or accelerate the deal technically.'
+          ];
+          const na = 'Data Not Publicly Available';
+          const emailStatus = c.email_status||na;
+          const emailColor = emailStatus==='Verified'?'var(--green)':emailStatus==='Inferred'?'var(--amber)':'';
+          const emailBadge = emailStatus==='Verified'?'✓ Verified':emailStatus==='Inferred'?'~ Inferred':'';
+          return `<div class="bc-card ${cls[i]}">
+            <div class="bc-role-badge">${labels[i]}</div>
+            <div class="bc-title">${c.title||fit[['champion_title','decision_maker','gatekeeper_title'][i]]||'—'}</div>
+            <div class="bc-pain">${pains[i]}</div>
+            <div class="bc-contact">
+              <div class="bc-contact-row${c.name===na||!c.name?' na':''}">
+                <span class="bc-contact-icon">👤</span>
+                <span>${c.name||na}</span>
+              </div>
+              <div class="bc-contact-row${c.email===na||!c.email?' na':''}">
+                <span class="bc-contact-icon">✉</span>
+                <span style="flex:1">${c.email||na}</span>
+                ${emailBadge?`<span style="font-size:8px;font-weight:700;color:${emailColor};margin-left:4px">${emailBadge}</span>`:''}
+              </div>
+              <div class="bc-contact-row${c.linkedin===na||!c.linkedin?' na':''}">
+                <span class="bc-contact-icon">🔗</span>
+                ${c.linkedin&&c.linkedin!==na
+                  ?`<a href="${c.linkedin}" target="_blank" style="color:var(--cyan);font-size:9px;text-decoration:none">View LinkedIn</a>`
+                  :`<span>${na}</span>`}
+              </div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      <!-- EMAIL PATTERN STRIP — hidden until enrichment is production-ready -->
+
+      <!-- OPENING LINE — always visible, highest value -->
+      <div class="sc" style="margin-bottom:8px;border-left:3px solid var(--green)">
+        <span class="sc-tag" style="background:#10B98115;border-color:#10B98130;color:var(--green)">Opening line — use this first</span>
+        <div class="sc-text" style="font-size:13px;font-style:italic;color:var(--text)">"${data.opener||'No opener generated'}"</div>
+      </div>
+
+      <!-- COLLAPSIBLE INTEL SECTIONS -->
+      <div class="intel-section">
+        <div class="intel-header" onclick="toggleIntel(this)">
+          <div class="intel-header-left">
+            <span class="intel-tag" style="background:#7C3AED15;border-color:#7C3AED30;color:#A78BFA">Company intelligence</span>
+          </div>
+          <span class="intel-chevron">▼</span>
+        </div>
+        <div class="intel-body">${data.profile||'No profile available'}</div>
+      </div>
+
+      <div class="intel-section">
+        <div class="intel-header" onclick="toggleIntel(this)">
+          <div class="intel-header-left">
+            <span class="intel-tag" style="background:#06B6D415;border-color:#06B6D430;color:var(--cyan)">Discovery questions</span>
+          </div>
+          <span class="intel-chevron">▼</span>
+        </div>
+        <div class="intel-body"><div class="sc-list">${parseNumList(data.questions||'')}</div></div>
+      </div>
+
+      <div class="intel-section">
+        <div class="intel-header" onclick="toggleIntel(this)">
+          <div class="intel-header-left">
+            <span class="intel-tag" style="background:#F59E0B15;border-color:#F59E0B30;color:var(--amber)">Objections & responses</span>
+          </div>
+          <span class="intel-chevron">▼</span>
+        </div>
+        <div class="intel-body">${parseObjections(data.objections||'')}</div>
+      </div>
+
+      <div class="intel-section">
+        <div class="intel-header" onclick="toggleIntel(this)">
+          <div class="intel-header-left">
+            <span class="intel-tag" style="background:#EF444415;border-color:#EF444430;color:var(--red)">Next steps</span>
+          </div>
+          <span class="intel-chevron">▼</span>
+        </div>
+        <div class="intel-body"><div class="sc-list">${parseNumList(data.next_steps||'','var(--red)')}</div></div>
+      </div>
+
     </div>
 
     <div id="tab-signals" style="display:none">
@@ -984,15 +1277,24 @@ function showReport(data){
 }
 
 function showTab(tab,btn){
+  const teamPanel=document.getElementById('team-panel');
+  const rpt=document.getElementById('report');
   ['brief','signals','outreach','live','debrief','pipeline','notes','calendar'].forEach(t=>{
     const el=document.getElementById('tab-'+t);
     if(el)el.style.display=t===tab?'block':'none';
   });
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
   if(btn)btn.classList.add('on');
-  if(tab==='pipeline')buildPipeline();
-  if(tab==='notes'&&currentData?.id)loadNoteJournal(currentData.id);
-  if(tab==='calendar'){buildCalendar();loadReminders();}
+  if(tab==='team'){
+    if(rpt)rpt.style.display='none';
+    if(teamPanel){teamPanel.style.display='block';loadTeamAnalytics();}
+  } else {
+    if(teamPanel)teamPanel.style.display='none';
+    if(currentData&&rpt)rpt.style.display='block';
+    if(tab==='pipeline')buildPipeline();
+    if(tab==='notes'&&currentData?.id)loadNoteJournal(currentData.id);
+    if(tab==='calendar'){buildCalendar();loadReminders();}
+  }
 }
 
 function buildCharts(readiness,need,budget,speed){
@@ -1086,9 +1388,8 @@ function handleObj(){
   const btn=document.getElementById('obj-btn');
   const res=document.getElementById('obj-res');
   btn.disabled=true;btn.textContent='Getting response...';
-  fetch('/objection',{
+  apiFetch('/objection',{
     method:'POST',
-    headers:{'Content-Type':'application/json'},
     body:JSON.stringify({company:currentData.company,product:currentUser.product,objection:obj,profile:currentData.profile})
   })
   .then(r=>r.json())
@@ -1107,9 +1408,8 @@ function runDebrief(){
   const btn=document.getElementById('deb-btn');
   const res=document.getElementById('deb-res');
   btn.disabled=true;btn.textContent='Generating...';
-  fetch('/debrief',{
+  apiFetch('/debrief',{
     method:'POST',
-    headers:{'Content-Type':'application/json'},
     body:JSON.stringify({company:currentData.company,notes,name:currentUser.name,role:currentUser.role,product:currentUser.product})
   })
   .then(r=>r.json())
@@ -1145,9 +1445,8 @@ async function saveNoteEntry(){
   const btn=document.querySelector('.notes-save');
   btn.disabled=true;btn.textContent='Saving…';
   try{
-    const r=await fetch(`/leads/${currentData.id}/notes/add`,{
+    const r=await apiFetch(`/leads/${currentData.id}/notes/add`,{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({note:text})
     });
     if(r.ok){
@@ -1162,8 +1461,8 @@ async function saveNoteEntry(){
 
 async function loadNoteJournal(leadId){
   try{
-    const r=await fetch(`/leads/${leadId}/notes`);
-    if(!r.ok)return;
+    const r=await apiFetch(`/leads/${leadId}/notes`);
+    if(!r||!r.ok)return;
     const entries=await r.json();
     const journal=document.getElementById('notes-journal');
     if(!journal)return;
@@ -1197,77 +1496,189 @@ function downloadPDF(){
   if(!currentData)return;
   const{jsPDF}=window.jspdf;
   const doc=new jsPDF();
-  const company=currentData.company||'';
+  const co=currentData.company||'';
   const name=currentUser.name||currentData.user_name||'';
   const role=currentUser.role||currentData.user_role||'';
   const product=currentUser.product||currentData.product||'';
-
-  doc.setFillColor(8,8,15);
-  doc.rect(0,0,210,48,'F');
-  doc.setFillColor(124,58,237);
-  doc.rect(0,45,105,3,'F');
-  doc.setFillColor(6,182,212);
-  doc.rect(105,45,105,3,'F');
-
-  doc.setFontSize(26);doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');
-  doc.text('LeadLens',14,20);
-  doc.setFontSize(8);doc.setTextColor(124,58,237);doc.setFont('helvetica','normal');
-  doc.text('SALES INTELLIGENCE · PRO 2026',14,28);
-  doc.setFontSize(15);doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');
-  doc.text(company,14,39);
-
-  let y=56;
-  doc.setFontSize(9);doc.setTextColor(140,140,160);doc.setFont('helvetica','normal');
-  doc.text(`${name}${role?` · ${role}`:''}${product?` · ${product}`:''}`,14,y);
-  y+=5;
-  doc.text(currentData.created_at||'',14,y);
-  y+=10;
-
   const sc=currentData.scores||{};
-  [['Overall',sc.overall||0],['Need',sc.need_score||0],['Budget',sc.budget_score||0],['Speed',sc.decision_speed||0]].forEach(([lbl,val],i)=>{
-    const x=14+(i*46);
-    const col=val>=70?[16,185,129]:val>=40?[245,158,11]:[239,68,68];
-    doc.setFillColor(...col);
-    doc.roundedRect(x,y,40,18,2,2,'F');
-    doc.setFontSize(14);doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');
-    doc.text(String(val),x+20,y+10,{align:'center'});
-    doc.setFontSize(6);doc.setFont('helvetica','normal');
-    doc.text(lbl.toUpperCase(),x+20,y+16,{align:'center'});
-  });
-  y+=26;
+  const sigs=currentData.signals||{};
+  const fit=currentData.fit_check||{};
+  const ts=sigs.timing_score||0;
+  const overall=sc.overall||0;
+  const W=210,M=12,CW=186;
 
-  const sections=[
-    ['Company Profile',currentData.profile],
-    ['Opening Line',currentData.opener],
-    ['Discovery Questions',currentData.questions],
-    ['Objections & Responses',currentData.objections],
-    ['Next Steps',currentData.next_steps],
-    ['Cold Email',currentData.email],
-    ['Talk Track',currentData.talk_track],
-    ['LinkedIn Messages',currentData.linkedin],
-    ['Competitor Battle Card',currentData.competitor_battle],
-    ['5-Email Sequence',currentData.email_sequence],
-    ['Notes',currentData.notes]
-  ];
+  const col=v=>v>=70?[16,185,129]:v>=40?[245,158,11]:[239,68,68];
+  let y=0;
 
-  sections.forEach(([label,content])=>{
-    if(!content||!content.trim())return;
-    if(y>250){doc.addPage();y=20;}
+  function newPage(){doc.addPage();y=14;}
+  function check(n=40){if(y+n>278)newPage();}
+
+  function heading(text,rgb=[91,33,182]){
+    check(12);
     doc.setFillColor(237,233,254);
-    doc.roundedRect(12,y-4,186,8,2,2,'F');
-    doc.setFontSize(8);doc.setTextColor(91,33,182);doc.setFont('helvetica','bold');
-    doc.text(label.toUpperCase(),14,y+1);
+    doc.rect(M,y,CW,7,'F');
+    doc.setFontSize(7);doc.setTextColor(...rgb);doc.setFont('helvetica','bold');
+    doc.text(text.toUpperCase(),M+2,y+5);
     y+=11;
-    doc.setFontSize(9);doc.setTextColor(50,50,70);doc.setFont('helvetica','normal');
-    const lines=doc.splitTextToSize(content,182);
-    lines.forEach(line=>{
-      if(y>272){doc.addPage();y=20;}
-      doc.text(line,14,y);y+=5;
-    });
-    y+=7;
-  });
+  }
 
-  doc.save(`LeadLens_${company.replace(/\s+/g,'_')}.pdf`);
+  function body(text){
+    if(!text||!text.trim())return;
+    const clean=text.replace(/\*\*/g,'').replace(/#{1,3} /g,'');
+    doc.setFontSize(8.5);doc.setTextColor(40,40,60);doc.setFont('helvetica','normal');
+    const lines=doc.splitTextToSize(clean,CW);
+    lines.forEach(line=>{check(6);doc.text(line,M,y);y+=4.8;});
+    y+=3;
+  }
+
+  // HEADER
+  doc.setFillColor(15,15,25);
+  doc.rect(0,0,W,22,'F');
+  doc.setFillColor(124,58,237);doc.rect(0,20,W/2,2,'F');
+  doc.setFillColor(6,182,212);doc.rect(W/2,20,W/2,2,'F');
+  doc.setFontSize(9);doc.setTextColor(124,58,237);doc.setFont('helvetica','bold');
+  doc.text('LEADLENS',M,8);
+  doc.setFontSize(7);doc.setTextColor(160,160,180);doc.setFont('helvetica','normal');
+  doc.text('Verified Sales Intelligence',M,14);
+  doc.setFontSize(12);doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');
+  doc.text(co.length>35?co.substring(0,35)+'...':co,W-M,8,{align:'right'});
+  doc.setFontSize(7);doc.setTextColor(160,160,180);doc.setFont('helvetica','normal');
+  doc.text((name+(role?' · '+role:'')),W-M,14,{align:'right'});
+  doc.text(new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),W-M,19,{align:'right'});
+  y=28;
+
+  // SCORES
+  const s5=[['Opportunity',overall],['Need',sc.need_score||0],['Budget',sc.budget_score||0],['Speed',sc.decision_speed||0],['Timing',ts]];
+  const bw=(CW-4)/5;
+  s5.forEach(([l,v],i)=>{
+    const x=M+i*(bw+1),c=col(v),lt=c.map(n=>n+(255-n)*0.88);
+    doc.setFillColor(...lt);doc.roundedRect(x,y,bw,16,1.5,1.5,'F');
+    doc.setDrawColor(...c);doc.setLineWidth(0.2);doc.roundedRect(x,y,bw,16,1.5,1.5,'S');
+    doc.setFontSize(13);doc.setTextColor(...c);doc.setFont('helvetica','bold');
+    doc.text(String(v),x+bw/2,y+9,{align:'center'});
+    doc.setFontSize(5.5);doc.setTextColor(100,100,120);doc.setFont('helvetica','normal');
+    doc.text(l.toUpperCase(),x+bw/2,y+14.5,{align:'center'});
+  });
+  y+=20;
+
+  // TIMING BANNER
+  if(ts>0){
+    check(12);
+    const tc=col(ts),tl=tc.map(n=>n+(255-n)*0.9);
+    doc.setFillColor(...tl);doc.roundedRect(M,y,CW,10,2,2,'F');
+    doc.setFontSize(8);doc.setTextColor(...tc);doc.setFont('helvetica','bold');
+    doc.text(ts>=70?'REACH OUT NOW':ts>=40?'GOOD TIMING':'WAIT OR SKIP',M+2,y+4);
+    doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(70,70,90);
+    const rec=doc.splitTextToSize(sigs.recommendation||'',CW-42);
+    if(rec[0])doc.text(rec[0],M+36,y+4);
+    if(rec[1])doc.text(rec[1],M+2,y+8.5);
+    y+=14;
+  }
+
+  // FIT BANNER
+  check(10);
+  if(fit.is_fit===false){
+    doc.setFillColor(254,242,242);doc.roundedRect(M,y,CW,10,2,2,'F');
+    doc.setFontSize(7.5);doc.setTextColor(185,28,28);doc.setFont('helvetica','bold');
+    doc.text('WARNING: '+(fit.warning||'').substring(0,80),M+2,y+4);
+  } else {
+    doc.setFillColor(240,253,244);doc.roundedRect(M,y,CW,10,2,2,'F');
+    doc.setFontSize(7.5);doc.setTextColor(21,128,61);doc.setFont('helvetica','bold');
+    doc.text((fit.product_category||'Product')+' fit confirmed — '+(fit.confidence||0)+'% confidence',M+2,y+4);
+    doc.setFont('helvetica','normal');doc.setTextColor(40,100,60);
+    doc.text('Contact: '+(fit.decision_maker||''),M+2,y+8.5);
+  }
+  y+=14;
+
+  // BUYING COMMITTEE — roles only
+  check(28);heading('Buying Committee');
+  const roles=[
+    {badge:'CHAMPION',title:fit.champion_title||'',color:[124,58,237]},
+    {badge:'BUYER',title:fit.decision_maker||'',color:[16,128,91]},
+    {badge:'GATEKEEPER',title:fit.gatekeeper_title||'',color:[180,100,20]},
+  ];
+  const rcw=(CW-4)/3;
+  roles.forEach((r,i)=>{
+    const rx=M+i*(rcw+2),lt=r.color.map(n=>n+(255-n)*0.9);
+    doc.setFillColor(...lt);doc.roundedRect(rx,y,rcw,18,2,2,'F');
+    doc.setFontSize(6);doc.setTextColor(...r.color);doc.setFont('helvetica','bold');
+    doc.text(r.badge,rx+2,y+5);
+    doc.setFontSize(7.5);doc.setTextColor(30,30,50);doc.setFont('helvetica','bold');
+    const t=(r.title||'').length>28?(r.title||'').substring(0,28)+'...':(r.title||'');
+    const tl=doc.splitTextToSize(t,rcw-4);
+    tl.slice(0,2).forEach((l,li)=>doc.text(l,rx+2,y+10+(li*4.5)));
+  });
+  y+=22;
+
+  // OPENING LINE
+  if(currentData.opener){
+    check(16);heading('Opening Line',[16,128,61]);
+    doc.setFontSize(9);doc.setTextColor(30,30,50);doc.setFont('helvetica','bolditalic');
+    const ol=doc.splitTextToSize('"'+currentData.opener+'"',CW);
+    ol.forEach(l=>{check(6);doc.text(l,M,y);y+=5;});
+    y+=3;
+  }
+
+  // COMPANY PROFILE
+  if(currentData.profile){
+    check(16);heading('Company Profile');
+    const pc=(currentData.profile||'').split('**HQ vs Site')[0].split('**Buying Committee')[0].trim();
+    body(pc);
+  }
+
+  // BUYING SIGNALS
+  check(20);heading('Buying Signals',[21,128,61]);
+  [['Funding',sigs.funding],['Leadership',sigs.leadership],['Expansion',sigs.expansion],['Hiring',sigs.hiring],['Contracts',sigs.contracts]].forEach(([label,sig])=>{
+    if(!sig)return;
+    check(7);
+    const c=sig.detected?[16,185,129]:[160,160,170];
+    doc.setFillColor(...c);doc.circle(M+2,y-0.5,1.8,'F');
+    doc.setFontSize(7.5);doc.setTextColor(...c);doc.setFont('helvetica','bold');
+    doc.text(label,M+6,y);
+    doc.setTextColor(60,60,80);doc.setFont('helvetica','normal');
+    const det=doc.splitTextToSize(sig.detail||'',CW-36);
+    doc.text(det[0]||'',M+30,y);
+    y+=5.5;
+  });
+  y+=2;
+
+  // DISCOVERY QUESTIONS
+  if(currentData.questions){check(16);heading('Discovery Questions');body(currentData.questions);}
+
+  // OBJECTIONS
+  if(currentData.objections){check(16);heading('Objections & Responses',[180,80,20]);body(currentData.objections);}
+
+  // NEXT STEPS
+  if(currentData.next_steps){check(16);heading('Next Steps',[185,28,28]);body(currentData.next_steps);}
+
+  // OUTREACH PAGE
+  const hasOut=currentData.email||currentData.talk_track||currentData.linkedin||currentData.competitor_battle||currentData.email_sequence;
+  if(hasOut){
+    newPage();
+    doc.setFillColor(15,15,25);doc.rect(0,0,W,10,'F');
+    doc.setFontSize(8);doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');
+    doc.text('OUTREACH PACK',M,7);
+    doc.setTextColor(124,58,237);doc.text(co,W-M,7,{align:'right'});
+    y=18;
+    if(currentData.email){heading('Cold Email');body(currentData.email);}
+    if(currentData.talk_track){check(16);heading('Talk Track');body(currentData.talk_track);}
+    if(currentData.linkedin){check(16);heading('LinkedIn Messages');body(currentData.linkedin);}
+    if(currentData.competitor_battle){check(16);heading('Competitor Battle Card',[21,94,117]);body(currentData.competitor_battle);}
+    if(currentData.email_sequence){check(16);heading('5-Email Sequence');body(currentData.email_sequence);}
+  }
+
+  // FOOTER
+  const pages=doc.getNumberOfPages();
+  for(let i=1;i<=pages;i++){
+    doc.setPage(i);
+    doc.setFillColor(245,245,250);doc.rect(0,285,W,12,'F');
+    doc.setFontSize(6.5);doc.setTextColor(150,150,170);doc.setFont('helvetica','normal');
+    doc.text('LeadLens — Verified Sales Intelligence',M,292);
+    doc.text(co+' · '+new Date().toLocaleDateString(),W/2,292,{align:'center'});
+    doc.text(i+' / '+pages,W-M,292,{align:'right'});
+  }
+
+  doc.save('LeadLens_'+co.replace(/\s+/g,'_')+'.pdf');
 }
 
 document.addEventListener('keydown',e=>{
@@ -1279,8 +1690,8 @@ let currentUsage = {count: 0, limit: 10};
 
 async function loadUsage(){
   try{
-    const r = await fetch('/usage');
-    if(!r.ok) return;
+    const r = await apiFetch('/usage');
+    if(!r||!r.ok) return;
     const data = await r.json();
     currentUsage = {count: data.report_count, limit: data.report_limit};
     updateUsageUI(data.report_count, data.report_limit);
@@ -1330,7 +1741,7 @@ async function requestMoreAccess(){
   btn.disabled = true;
   btn.textContent = 'Sending…';
   try{
-    const r = await fetch('/request-access', {method:'POST', headers:{'Content-Type':'application/json'}});
+    const r = await apiFetch('/request-access', {method:'POST'});
     const data = await r.json();
     if(data.success){
       document.getElementById('limit-req-sent').style.display = 'block';
@@ -1356,7 +1767,8 @@ loadTheme();
 loadLeadsFromDB();
 loadUsage();
 // Load sidebar reminders on startup (independent of calendar tab)
-fetch('/reminders').then(r=>r.json()).then(data=>{
+apiFetch('/reminders').then(r=>r&&r.json()).then(data=>{
+  if(!data)return;
   allReminders=data;
   renderSidebarReminders();
 }).catch(()=>{});
@@ -1429,8 +1841,8 @@ function selectCalDay(dateStr){
 
 async function loadReminders(){
   try{
-    const r = await fetch('/reminders');
-    if(!r.ok) return;
+    const r = await apiFetch('/reminders');
+    if(!r||!r.ok) return;
     allReminders = await r.json();
     buildCalendar();
     renderRemindersList();
@@ -1488,7 +1900,7 @@ function jumpToLead(leadId){
   currentUser = {name:lead.user_name||'',role:lead.user_role||'',product:lead.product||''};
   showReport(lead);
   // Switch to calendar tab so they see the reminder in context
-  const calBtn = document.querySelector('.tab:last-child');
+  const calBtn = [...document.querySelectorAll('.tab')].find(b=>b.textContent.includes('Calendar'));
   showTab('calendar', calBtn);
 }
 
@@ -1526,9 +1938,8 @@ async function addReminder(){
   const btn = document.querySelector('.cal-add-btn');
   btn.disabled=true; btn.textContent='Saving…';
   try{
-    const r = await fetch('/reminders', {
+    const r = await apiFetch('/reminders', {
       method:'POST',
-      headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
         note, date,
         lead_id: currentData?.id || null,
@@ -1536,7 +1947,7 @@ async function addReminder(){
         ai_suggested: false
       })
     });
-    if(r.ok){
+    if(r&&r.ok){
       document.getElementById('cal-note-input').value='';
       await loadReminders();
     }
@@ -1546,7 +1957,7 @@ async function addReminder(){
 
 async function deleteReminder(id){
   try{
-    await fetch(`/reminders/${id}`, {method:'DELETE'});
+    await apiFetch(`/reminders/${id}`, {method:'DELETE'});
     await loadReminders();
   }catch(e){}
 }
@@ -1558,15 +1969,15 @@ async function getAISuggestion(){
   btn.disabled=true; btn.textContent='Thinking…';
   result.style.display='none';
   try{
-    const r = await fetch('/reminders/ai-suggest', {
+    const r = await apiFetch('/reminders/ai-suggest', {
       method:'POST',
-      headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
         lead_id: currentData.id,
         company: currentData.company,
         profile: currentData.profile||''
       })
     });
+    if(!r)return;
     const data = await r.json();
     if(data.suggestion){
       result.style.display='block';
@@ -1578,16 +1989,15 @@ async function getAISuggestion(){
     }
   }catch(e){
     result.style.display='block';
-    result.textContent='Could not get suggestion. Check your Groq API key.';
+    result.textContent='Could not get suggestion.';
   }
   btn.disabled=false; btn.textContent='Suggest follow-up →';
 }
 
 async function acceptAISuggestion(date, note){
   try{
-    const r = await fetch('/reminders', {
+    const r = await apiFetch('/reminders', {
       method:'POST',
-      headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
         note, date,
         lead_id: currentData?.id || null,
@@ -1595,12 +2005,365 @@ async function acceptAISuggestion(date, note){
         ai_suggested: true
       })
     });
-    if(r.ok){
+    if(r&&r.ok){
       document.getElementById('cal-ai-result').style.display='none';
       await loadReminders();
     }
   }catch(e){}
 }
+
+// ── RESEARCH ANYWAY OVERRIDE ──────────────────────────────────
+function researchAnyway(){
+  if(!currentData) return;
+  const company = currentData.company;
+  const name    = document.getElementById('inp-name').value.trim() || currentData.user_name || '';
+  const role    = document.getElementById('inp-role').value.trim() || currentData.user_role || '';
+  const product = document.getElementById('inp-product').value.trim() || currentData.product || '';
+  const sector  = document.getElementById('inp-sector').value || '';
+
+  if(!company||!name||!product){ alert('Please fill in your name and what you sell first.'); return; }
+
+  // Force fit_check to pass by patching the current lead's fit_check
+  // then re-run research with a special override flag
+  setResearching(true);
+  document.getElementById('empty').style.display='none';
+  document.getElementById('report').style.display='none';
+  document.getElementById('loading').style.display='flex';
+  const iv = animSteps();
+
+  apiFetch('/research', {
+    method: 'POST',
+    body: JSON.stringify({name, role, product, company, sector, force_fit: true})
+  })
+  .then(r => r && r.json())
+  .then(data => {
+    clearInterval(iv);
+    document.getElementById('loading').style.display='none';
+    setResearching(false);
+    if(!data) return;
+    if(data.error && !data.company){ showEmpty('Something went wrong', data.message||'Try again.', true); return; }
+    currentData = data;
+    const idx = leads.findIndex(l => l.id === data.id);
+    if(idx >= 0) leads[idx] = data; else leads.unshift(data);
+    updateSidebar();
+    showReport(data);
+  })
+  .catch(()=>{
+    clearInterval(iv);
+    document.getElementById('loading').style.display='none';
+    setResearching(false);
+    showEmpty('Something went wrong','Check your connection and try again.',true);
+  });
+}
+
+// ── INTEL SECTION TOGGLE ──────────────────────────────────────
+function toggleIntel(header){
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.intel-chevron');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chevron.classList.toggle('open', !isOpen);
+}
+
+// ── JWT Auth ──────────────────────────────────────────────────
+function getToken(){ return localStorage.getItem('ll_token'); }
+function setToken(t){ localStorage.setItem('ll_token', t); }
+function clearToken(){ localStorage.removeItem('ll_token'); }
+
+async function apiFetch(url, options={}){
+  const token = getToken();
+  const headers = {
+    'Content-Type':'application/json',
+    ...(options.headers||{}),
+    ...(token?{'Authorization':`Bearer ${token}`}:{})
+  };
+  const r = await fetch(url, {...options, headers});
+  if(r.status===401){ clearToken(); window.location.href='/'; return null; }
+  return r;
+}
+
+function logout(){ clearToken(); window.location.href='/'; }
+
+// ── Invite flow ───────────────────────────────────────────────
+(function initInviteBtn(){
+  const role = localStorage.getItem('ll_role') || '';
+  const btn  = document.getElementById('invite-btn');
+  if(btn && (role === 'owner' || role === 'admin')){
+    btn.style.display = 'flex';
+  }
+  const teamBtn = document.getElementById('team-analytics-btn');
+  if(teamBtn && (role === 'owner' || role === 'admin')){
+    teamBtn.style.display = 'flex';
+  }
+})();
+
+// ── Team Analytics ─────────────────────────────────────────────
+function openTeamPanel(){
+  // Show empty state first so panel is visible, then load
+  document.getElementById('empty').style.display='none';
+  document.getElementById('loading').style.display='none';
+  document.getElementById('report').style.display='none';
+  const tp=document.getElementById('team-panel');
+  tp.style.display='block';
+  loadTeamAnalytics();
+}
+
+function teamLastActive(iso){
+  if(!iso) return 'Never';
+  const d=new Date(iso), now=new Date();
+  const days=Math.floor((now-d)/864e5);
+  if(days===0) return 'Today';
+  if(days===1) return 'Yesterday';
+  return `${days} days ago`;
+}
+
+function teamStatusDot(iso){
+  if(!iso) return 'inactive';
+  const days=Math.floor((new Date()-new Date(iso))/864e5);
+  if(days<=7) return 'active';
+  if(days<=30) return 'stale';
+  return 'inactive';
+}
+
+function teamScoreColor(score){
+  if(score>=70) return 'linear-gradient(90deg,var(--green),var(--cyan))';
+  if(score>=40) return 'linear-gradient(90deg,var(--amber),#F97316)';
+  return 'var(--red)';
+}
+
+function teamFeedScoreClass(score){
+  if(score>=70) return 'hot';
+  if(score>=40) return 'warm';
+  return 'cold';
+}
+
+function teamSectorLabel(s){
+  const map={mining:'⛏ Mining',cleantech:'🌱 CleanTech',agtech:'🌾 AgTech'};
+  return map[s]||s||'—';
+}
+
+async function loadTeamAnalytics(){
+  const panel=document.getElementById('team-panel');
+  if(!panel) return;
+  panel.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;padding:60px;color:var(--text2);gap:12px;font-size:12px;opacity:0.6"><div class="spin-ring" style="width:28px;height:28px;border-width:2px"></div>Loading team analytics…</div>`;
+  try{
+    const res=await apiFetch('/analytics/team');
+    if(!res) return;
+    if(res.status===403){
+      panel.innerHTML=`
+        <div class="team-upgrade-cta">
+          <div style="font-size:36px;margin-bottom:12px">📊</div>
+          <h3>Team Analytics</h3>
+          <p>Get visibility into your whole team's pipeline — member leaderboards, activity feed, and org-wide performance stats.<br><br>Team analytics requires a <strong style="color:#a78bfa">Team or Enterprise plan</strong>.</p>
+          <button class="team-cta-btn" onclick="window.open('mailto:hello@leadlens.ai?subject=Upgrade to Team Plan','_blank')">Upgrade to Team Plan →</button>
+        </div>`;
+      return;
+    }
+    if(!res.ok) throw new Error('Failed to load analytics');
+    const data=await res.json();
+    const {members=[],org={},activity=[]}=data;
+    const myEmail=document.getElementById('user-email-display')?.textContent||'';
+
+    // ── Section 1: Overview ──
+    const topLabel=org.top_user?(org.top_user===myEmail?'You 🏆':org.top_user.split('@')[0]):'—';
+    const overviewHtml=`
+      <div class="team-section-hdr">Team Overview</div>
+      <div class="team-stat-grid">
+        <div class="team-stat-card">
+          <div class="team-stat-lbl">Total Team Leads</div>
+          <div class="team-stat-val">${org.total_leads??0}</div>
+          <div class="team-stat-sub">Across all members</div>
+        </div>
+        <div class="team-stat-card">
+          <div class="team-stat-lbl">Team Avg Score</div>
+          <div class="team-stat-val">${org.avg_score??0}</div>
+          <div class="team-stat-sub">Out of 100</div>
+        </div>
+        <div class="team-stat-card">
+          <div class="team-stat-lbl">Active Members</div>
+          <div class="team-stat-val">${org.active_members??0}</div>
+          <div class="team-stat-sub">Active last 7 days${org.top_user?` · Top: ${topLabel}`:''}</div>
+        </div>
+      </div>`;
+
+    // ── Section 2: Leaderboard ──
+    let leaderRows='';
+    if(members.length===0){
+      leaderRows=`<tr><td colspan="6" style="text-align:center;padding:28px;opacity:0.45;font-size:11px">No members yet</td></tr>`;
+    } else {
+      leaderRows=members.map(m=>{
+        const roleClass=m.role||'member';
+        const pct=Math.min(100,Math.round((m.avg_score||0)));
+        const barColor=teamScoreColor(m.avg_score||0);
+        const dot=teamStatusDot(m.last_active);
+        const emailShort=m.email.length>22?m.email.split('@')[0]:m.email;
+        return `<tr>
+          <td><div style="display:flex;align-items:center;gap:7px"><span class="status-dot ${dot}"></span><span style="color:var(--text);font-weight:600">${emailShort}</span></div></td>
+          <td><span class="role-badge ${roleClass}">${m.role||'member'}</span></td>
+          <td style="font-weight:700;color:var(--text)">${m.lead_count}</td>
+          <td>
+            <div class="team-score-bar-wrap">
+              <span style="font-size:10px;font-weight:700;color:var(--text);min-width:28px">${m.avg_score||0}</span>
+              <div class="team-score-bar-track"><div class="team-score-bar-fill" style="width:${pct}%;background:${barColor}"></div></div>
+            </div>
+          </td>
+          <td>${teamLastActive(m.last_active)}</td>
+          <td><span class="status-dot ${dot}" style="animation:none"></span></td>
+        </tr>`;
+      }).join('');
+    }
+    const leaderboardHtml=`
+      <div class="team-section-hdr">Leaderboard</div>
+      <div class="team-table-wrap">
+        <table class="team-table">
+          <thead><tr><th>Member</th><th>Role</th><th>Leads</th><th>Avg Score</th><th>Last Active</th><th>Status</th></tr></thead>
+          <tbody>${leaderRows}</tbody>
+        </table>
+      </div>`;
+
+    // ── Section 3: Activity Feed ──
+    let feedRows='';
+    if(activity.length===0){
+      feedRows=`<div class="team-empty"><div class="team-empty-icon">🔭</div><div class="team-empty-text">Your team hasn't researched any companies yet. Invite teammates to get started.</div></div>`;
+    } else {
+      feedRows=activity.map(a=>{
+        const isOwn=a.user_email===myEmail;
+        const scoreClass=teamFeedScoreClass(a.score);
+        const date=new Date(a.created_at).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+        const byLabel=a.user_email===myEmail?'You':a.user_email.split('@')[0];
+        if(isOwn){
+          const lead=leads.find(l=>l.id===a.lead_id);
+          return `<div class="team-feed-row" onclick="${lead?`selectAndShowLead(${a.lead_id})`:''}">
+            <span class="team-feed-company">${a.company}</span>
+            <span class="team-feed-by">${byLabel}</span>
+            <span class="team-feed-score ${scoreClass}">${a.score}</span>
+            <span class="team-feed-sector">${teamSectorLabel(a.sector)}</span>
+            <span class="team-feed-date">${date}</span>
+          </div>`;
+        }
+        return `<div class="team-feed-row locked" title="Researched by ${a.user_email} — available in Enterprise">
+          <span class="team-feed-company">${a.company}</span>
+          <span class="team-feed-by">${byLabel}</span>
+          <span class="team-feed-score ${scoreClass}">${a.score}</span>
+          <span class="team-feed-sector">${teamSectorLabel(a.sector)}</span>
+          <span class="team-feed-date">${date}</span>
+          <span class="team-feed-lock" title="Coming in Enterprise">🔒</span>
+        </div>`;
+      }).join('');
+    }
+    const feedHtml=`
+      <div class="team-section-hdr">Team Activity Feed</div>
+      <div class="team-feed">${feedRows}</div>`;
+
+    panel.innerHTML=`
+      <div class="team-header-row">
+        <h2>👥 Team Analytics</h2>
+        <button class="team-refresh-btn" onclick="loadTeamAnalytics()">🔄 Refresh</button>
+      </div>
+      ${overviewHtml}
+      ${leaderboardHtml}
+      ${feedHtml}`;
+
+    // Animate score bars after render
+    requestAnimationFrame(()=>{
+      panel.querySelectorAll('.team-score-bar-fill').forEach(el=>{
+        const w=el.style.width;
+        el.style.width='0%';
+        requestAnimationFrame(()=>{ el.style.width=w; });
+      });
+    });
+  } catch(err){
+    panel.innerHTML=`<div class="team-empty"><div class="team-empty-icon">⚠️</div><div class="team-empty-text">Failed to load team analytics.<br><button class="team-refresh-btn" onclick="loadTeamAnalytics()" style="margin-top:12px">Try again</button></div></div>`;
+  }
+}
+
+function selectAndShowLead(leadId){
+  const lead=leads.find(l=>l.id===leadId);
+  if(!lead) return;
+  document.querySelectorAll('.lead-item').forEach(el=>el.classList.remove('active'));
+  const el=document.querySelector(`.lead-item[data-id="${leadId}"]`);
+  if(el) el.classList.add('active');
+  currentData=lead;
+  currentUser={name:lead.user_name||'',role:lead.user_role||'',product:lead.product||''};
+  document.getElementById('team-panel').style.display='none';
+  showReport(lead);
+  showTab('brief',document.querySelector('.tab'));
+}
+
+let _inviteLink = '';
+
+async function openInviteModal(){
+  const modal = document.getElementById('invite-modal');
+  modal.style.display = 'flex';
+  document.getElementById('invite-loading').style.display = 'block';
+  document.getElementById('invite-content').style.display = 'none';
+  document.getElementById('invite-error').style.display = 'none';
+  _inviteLink = '';
+
+  try {
+    const res = await apiFetch('/invite/generate', { method: 'POST' });
+    if(!res) return; // 401 handled by apiFetch
+    const data = await res.json();
+    if(!res.ok){ throw new Error(data.detail || 'Failed to generate invite'); }
+    _inviteLink = data.invite_link;
+    document.getElementById('invite-link-input').value = _inviteLink;
+    document.getElementById('invite-loading').style.display = 'none';
+    document.getElementById('invite-content').style.display = 'block';
+  } catch(err) {
+    document.getElementById('invite-loading').style.display = 'none';
+    document.getElementById('invite-content').style.display = 'block';
+    const errEl = document.getElementById('invite-error');
+    errEl.textContent = err.message || 'Could not generate invite link.';
+    errEl.style.display = 'block';
+  }
+}
+
+function closeInviteModal(){
+  document.getElementById('invite-modal').style.display = 'none';
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeInviteModal();
+});
+document.getElementById('invite-modal').addEventListener('click', e => {
+  if(e.target === document.getElementById('invite-modal')) closeInviteModal();
+});
+
+async function copyInviteLink(){
+  if(!_inviteLink) return;
+  const btn = document.getElementById('copy-btn');
+  try {
+    await navigator.clipboard.writeText(_inviteLink);
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.style.background = 'linear-gradient(135deg,#059669,#10B981)';
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.style.background = 'linear-gradient(135deg,var(--purple),var(--cyan))';
+    }, 2000);
+  } catch {
+    // fallback for non-HTTPS / older browsers
+    const inp = document.getElementById('invite-link-input');
+    inp.select();
+    document.execCommand('copy');
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = 'Copy Link'; }, 2000);
+  }
+}
+
+function emailInvite(){
+  if(!_inviteLink) return;
+  const orgName = localStorage.getItem('ll_org_name') || 'our team';
+  const subject = encodeURIComponent(`Join me on LeadLens`);
+  const body    = encodeURIComponent(
+    `Hi,\n\nI'd like to invite you to join ${orgName} on LeadLens — an AI-powered sales intelligence platform.\n\nClick the link below to create your account:\n${_inviteLink}\n\nSee you on the other side!`
+  );
+  window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+}
+
+(function checkAuth(){
+  if(!getToken()){ window.location.href='/'; }
+})();
 </script>
 </body>
 </html>
