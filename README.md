@@ -1,4 +1,4 @@
-# LeadLens — AI Sales Intelligence Agent
+# LeadLens, AI Sales Intelligence Agent
 
 A full-stack AI web app that researches any company worldwide and generates a complete sales brief in under 90 seconds.
 
