@@ -1,6 +1,6 @@
 # Business Intelligence Report
 
-## MineSense — Sales Call Brief
+## MineSense, Sales Call Brief
 
 ### Company Profile
 **Research on MineSense**
