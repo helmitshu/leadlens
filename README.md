@@ -1,1 +1,41 @@
-IyBMZWFkTGVucyDigJQgQUkgU2FsZXMgSW50ZWxsaWdlbmNlIEFnZW50CgpBIGZ1bGwtc3RhY2sgQUkgd2ViIGFwcCB0aGF0IHJlc2VhcmNoZXMgYW55IGNvbXBhbnkgd29ybGR3aWRlIGFuZCBnZW5lcmF0ZXMgYSBjb21wbGV0ZSBzYWxlcyBicmllZiBpbiB1bmRlciA5MCBzZWNvbmRzLgoKIyMgV2hhdCBpdCBkb2VzCgotIFJlc2VhcmNoZXMgYW55IGNvbXBhbnkgdXNpbmcgbGl2ZSB3ZWIgZGF0YQotIERldGVjdHMgYnV5aW5nIHNpZ25hbHM6IGZ1bmRpbmcsIGxlYWRlcnNoaXAgY2hhbmdlcywgZXhwYW5zaW9uLCBoaXJpbmcKLSBTY29yZXMgZGVhbCByZWFkaW5lc3MsIHByb2R1Y3QgbmVlZCwgYnVkZ2V0LCBhbmQgZGVjaXNpb24gc3BlZWQKLSBHZW5lcmF0ZXMgY29sZCBlbWFpbCwgdGFsayB0cmFjaywgTGlua2VkSW4gbWVzc2FnZXMsIGFuZCBiYXR0bGUgY2FyZHMKLSBIYW5kbGVzIG9iamVjdGlvbnMgbGl2ZSBkdXJpbmcgY2FsbHMKLSBFeHBvcnRzIHRoZSBmdWxsIHJlcG9ydCBhcyBQREYKCiMjIFRlY2ggc3RhY2sKCi0gUHl0aG9uICsgRmxhc2sgKGJhY2tlbmQpCi0gQW50aHJvcGljIENsYXVkZSAocmVhc29uaW5nKQotIFRhdmlseSAocmVhbC10aW1lIHdlYiBzZWFyY2gpCi0gR3JvcSAobGlnaHR3ZWlnaHQgQUkgdGFza3MpCi0gU1FMaXRlIChsZWFkIGRhdGFiYXNlKQotIENoYXJ0LmpzIChkYXRhIHZpc3VhbGl6YXRpb24pCi0ganNQREYgKFBERiBleHBvcnQpCgojIyBTZXR1cAoKMS4gQ2xvbmUgdGhlIHJlcG8KMi4gQ3JlYXRlIGEgdmlydHVhbCBlbnZpcm9ubWVudDogYHB5dGhvbiAtbSB2ZW52IHZlbnZgCjMuIEFjdGl2YXRlIGl0OiBgdmVudlxTY3JpcHRzXGFjdGl2YXRlYCAoV2luZG93cykgb3IgYHNvdXJjZSB2ZW52L2Jpbi9hY3RpdmF0ZWAgKE1hYy9MaW51eCkKNC4gSW5zdGFsbCBwYWNrYWdlczogYHBpcCBpbnN0YWxsIC1yIHJlcXVpcmVtZW50cy50eHRgCjUuIENyZWF0ZSBhIGAuZW52YCBmaWxlIHdpdGggeW91ciBvd24gQVBJIGtleXM6CiAgIGBgYAogICBBTlRIUk9QSUNfQVBJX0tFWT15b3VyLWtleQogICBUQVZJTFlfQVBJX0tFWT15b3VyLWtleQogICBHUk9RX0FQSV9LRVk9eW91ci1rZXkKICAgU0VDUkVUX0tFWT15b3VyLXNlY3JldAogICBBRE1JTl9QQVNTV09SRD15b3VyLXBhc3N3b3JkCiAgIGBgYAo2LiBSdW46IGBweXRob24gYXBwLnB5YAo3LiBPcGVuOiBodHRwOi8vbG9jYWxob3N0OjUwMDAKCk5vIGtleXMgYXJlIGNvbW1pdHRlZCB0byB0aGlzIHJlcG8uIEV2ZXJ5dGhpbmcgc2VjcmV0IGxpdmVzIGluIGAuZW52YCwgd2hpY2ggaXMgZ2l0aWdub3JlZC4K
+# LeadLens — AI Sales Intelligence Agent
+
+A full-stack AI web app that researches any company worldwide and generates a complete sales brief in under 90 seconds.
+
+## What it does
+
+- Researches any company using live web data
+- Detects buying signals: funding, leadership changes, expansion, hiring
+- Scores deal readiness, product need, budget, and decision speed
+- Generates cold email, talk track, LinkedIn messages, and battle cards
+- Handles objections live during calls
+- Exports the full report as PDF
+
+## Tech stack
+
+- Python + Flask (backend)
+- Anthropic Claude (reasoning)
+- Tavily (real-time web search)
+- Groq (lightweight AI tasks)
+- SQLite (lead database)
+- Chart.js (data visualization)
+- jsPDF (PDF export)
+
+## Setup
+
+1. Clone the repo
+2. Create a virtual environment: `python -m venv venv`
+3. Activate it: `venv\Scripts\activate` (Windows) or `source venv/bin/activate` (Mac/Linux)
+4. Install packages: `pip install -r requirements.txt`
+5. Create a `.env` file with your own API keys:
+   ```
+   ANTHROPIC_API_KEY=your-key
+   TAVILY_API_KEY=your-key
+   GROQ_API_KEY=your-key
+   SECRET_KEY=your-secret
+   ADMIN_PASSWORD=your-password
+   ```
+6. Run: `python app.py`
+7. Open: http://localhost:5000
+
+No keys are committed to this repo. Everything secret lives in `.env`, which is gitignored.
